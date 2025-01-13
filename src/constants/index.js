@@ -1,3 +1,6 @@
+import Hubwerkseinheit from "../components/Hubwerkseinheit";
+import Tisch from "../components/Tisch";
+
 export const navLinks = [
   {
     id: 1,
@@ -15,93 +18,31 @@ export const navLinks = [
     href: '#work',
   },
   {
+    id: 5,
+    name: 'Studies',
+    href: '#studies',
+  },
+  {
     id: 4,
     name: 'Contact',
     href: '#contact',
   },
+  ,
+  
 ];
 
-export const clientReviews = [
-  {
-    id: 1,
-    name: 'Emily Johnson',
-    position: 'Marketing Director at GreenLeaf',
-    img: 'assets/review1.png',
-    review:
-      'Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.',
-  },
-  {
-    id: 2,
-    name: 'Mark Rogers',
-    position: 'Founder of TechGear Shop',
-    img: 'assets/review2.png',
-    review:
-      'Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional! Fantastic work.',
-  },
-  {
-    id: 3,
-    name: 'John Dohsas',
-    position: 'Project Manager at UrbanTech ',
-    img: 'assets/review3.png',
-    review:
-      'I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.',
-  },
-  {
-    id: 4,
-    name: 'Ether Smith',
-    position: 'CEO of BrightStar Enterprises',
-    img: 'assets/review4.png',
-    review:
-      'Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend backend dev are top-notch.',
-  },
-];
+
 
 export const myProjects = [
+
   {
-    title: 'Podcastr - AI Podcast Platform',
-    desc: 'Podcastr is a revolutionary Software-as-a-Service platform that transforms the way podcasts are created. With advanced AI-powered features like text-to-multiple-voices functionality, it allows creators to generate diverse voiceovers from a single text input.',
-    subdesc:
-      'Built as a unique Software-as-a-Service app with Next.js 14, Tailwind CSS, TypeScript, Framer Motion and Convex, Podcastr is designed for optimal performance and scalability.',
-    href: 'https://www.youtube.com/watch?v=zfAb95tJvZQ',
-    texture: '/textures/project/project1.mp4',
-    logo: '/assets/project-logo1.png',
-    logoStyle: {
-      backgroundColor: '#2A1816',
-      border: '0.2px solid #36201D',
-      boxShadow: '0px 0px 60px 0px #AA3C304D',
-    },
-    spotlight: '/assets/spotlight1.png',
-    tags: [
-      {
-        id: 1,
-        name: 'React.js',
-        path: '/assets/react.svg',
-      },
-      {
-        id: 2,
-        name: 'TailwindCSS',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Framer Motion',
-        path: '/assets/framer.png',
-      },
-    ],
-  },
-  {
-    title: 'LiveDoc - Real-Time Google Docs Clone',
-    desc: 'LiveDoc is a powerful collaborative app that elevates the capabilities of real-time document editing. As an enhanced version of Google Docs, It supports millions of collaborators simultaneously, ensuring that every change is captured instantly and accurately.',
-    subdesc:
-      'With LiveDoc, users can experience the future of collaboration, where multiple contributors work together in real time without any lag, by using Next.js and Liveblocks newest features.',
-    href: 'https://www.youtube.com/watch?v=y5vE8y_f_OM',
+    title: 'Design of a Lifting Unit for a Bridge Crane',
+    desc: 'This project involved designing a critical lifting unit for a bridge crane, focusing on the development of both brakes and gears according to industry standards. I utilized Solid Edge to create detailed 3D models and technical drawings, ensuring that the design was both efficient and safe for industrial application. The project showcased my ability to adhere to technical specifications while also delivering a functional and innovative solution.',
+    subdesc: 'With this design, I aimed to improve the mechanical efficiency of the crane while ensuring safety and reliability in operation. The use of advanced 3D modeling tools was crucial in visualizing and refining the components.',
+    href: '',
     texture: '/textures/project/project2.mp4',
     logo: '/assets/project-logo2.png',
+    model: Hubwerkseinheit,
     logoStyle: {
       backgroundColor: '#13202F',
       border: '0.2px solid #17293E',
@@ -111,38 +52,25 @@ export const myProjects = [
     tags: [
       {
         id: 1,
-        name: 'React.js',
-        path: '/assets/react.svg',
+        name: 'Solid Edge',
+        path: '/assets/solidedge.svg',
       },
       {
         id: 2,
-        name: 'TailwindCSS',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Framer Motion',
-        path: '/assets/framer.png',
+        name: 'Mechanical Design',
+        path: '/assets/design.svg',
       },
     ],
   },
   {
-    title: 'CarePulse - Health Management System',
-    desc: 'An innovative healthcare platform designed to streamline essential medical processes. It simplifies patient registration, appointment scheduling, and medical record management, providing a seamless experience for both healthcare providers and patients.',
-    subdesc:
-      'With a focus on efficiency, CarePulse integrantes complex forms and SMS notifications, by using Next.js, Appwrite, Twillio and Sentry that enhance operational workflows.',
-    href: 'https://www.youtube.com/watch?v=lEflo_sc82g',
+    title: 'Creation of a Streaming Platform with AI',
+    desc: 'In this project, I developed a cutting-edge platform that enabled real-time monitoring of CNC machines through AI-driven data analysis. By gathering information from sensors and cameras, the platform provided live feedback and enhanced anomaly detection. My focus was on improving operational efficiency by leveraging AI models that could process both image and time series data, ultimately enhancing the precision and speed of CNC operations.',
+    subdesc: 'The platform not only increased machine productivity but also provided a reliable method for early anomaly detection, minimizing downtime and maintenance costs through proactive monitoring.',
+    href: '',
     texture: '/textures/project/project3.mp4',
     logo: '/assets/project-logo3.png',
     logoStyle: {
       backgroundColor: '#60f5a1',
-      background:
-        'linear-gradient(0deg, #60F5A150, #60F5A150), linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(208, 213, 221, 0.8) 100%)',
       border: '0.2px solid rgba(208, 213, 221, 1)',
       boxShadow: '0px 0px 60px 0px rgba(35, 131, 96, 0.3)',
     },
@@ -150,102 +78,97 @@ export const myProjects = [
     tags: [
       {
         id: 1,
-        name: 'React.js',
-        path: '/assets/react.svg',
+        name: 'AI',
+        path: '/assets/ai.svg',
       },
       {
         id: 2,
-        name: 'TailwindCSS',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Framer Motion',
-        path: '/assets/framer.png',
+        name: 'CNC Machines',
+        path: '/assets/cnc.svg',
       },
     ],
   },
   {
-    title: 'Horizon - Online Banking Platform',
-    desc: 'Horizon is a comprehensive online banking platform that offers users a centralized finance management dashboard. It allows users to connect multiple bank accounts, monitor real-time transactions, and seamlessly transfer money to other users.',
-    subdesc:
-      'Built with Next.js 14 Appwrite, Dwolla and Plaid, Horizon ensures a smooth and secure banking experience, tailored to meet the needs of modern consumers.',
-    href: 'https://www.youtube.com/watch?v=PuOVqP_cjkE',
+    title: 'Design and Construction of a Processing Table for Robot-Assisted Plasma Cutting',
+    desc: 'For my Bachelor thesis, I designed and constructed a modern processing table optimized for robot-assisted plasma cutting operations. The project followed VDI 2221 guidelines and involved extensive thermal load investigations and strength verifications. By leveraging advanced simulation software and conducting thermographic analysis using Python and OpenCV, I ensured that the table could withstand the intense thermal loads associated with plasma cutting, while maintaining structural integrity.',
+    subdesc: 'This project not only showcased my ability to adhere to engineering standards but also allowed me to optimize industrial processes by using data-driven simulations and analysis.',
+    href: '',
     texture: '/textures/project/project4.mp4',
     logo: '/assets/project-logo4.png',
+    model:Tisch,
     logoStyle: {
-      backgroundColor: '#0E1F38',
-      border: '0.2px solid #0E2D58',
-      boxShadow: '0px 0px 60px 0px #2F67B64D',
+      backgroundColor: '#FFD700',
+      border: '0.2px solid #FFA500',
+      boxShadow: '0px 0px 60px 0px #FFA5004D',
     },
     spotlight: '/assets/spotlight4.png',
     tags: [
       {
         id: 1,
-        name: 'React.js',
-        path: '/assets/react.svg',
+        name: 'Python',
+        path: '/assets/python.svg',
       },
       {
         id: 2,
-        name: 'TailwindCSS',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Framer Motion',
-        path: '/assets/framer.png',
+        name: 'OpenCV',
+        path: '/assets/opencv.svg',
       },
     ],
   },
   {
-    title: 'Imaginify - AI Photo Manipulation App',
-    desc: 'Imaginify is a groundbreaking Software-as-a-Service application that empowers users to create stunning photo manipulations using AI technology. With features like AI-driven image editing, a payments system, and a credits-based model.',
-    subdesc:
-      'Built with Next.js 14, Cloudinary AI, Clerk, and Stripe, Imaginify combines cutting-edge technology with a user-centric approach. It can be turned into a side income or even a full-fledged business.',
-    href: 'https://www.youtube.com/watch?v=Ahwoks_dawU',
+    title: 'CNC Machine Programming with C++',
+    desc: 'In this team project, I was responsible for programming an XY plotter using C++ and G-Code, which significantly improved the precision and performance of the CNC operations. This project demonstrated my technical abilities in low-level programming and automation, allowing for fine control over CNC machinery. The improved plotting accuracy reduced production errors and increased overall efficiency.',
+    subdesc: 'By optimizing the code and machine operations, this project contributed to the successful implementation of CNC programming in real-world applications, demonstrating the benefits of custom G-Code solutions.',
+    href: '',
     texture: '/textures/project/project5.mp4',
     logo: '/assets/project-logo5.png',
     logoStyle: {
-      backgroundColor: '#1C1A43',
-      border: '0.2px solid #252262',
-      boxShadow: '0px 0px 60px 0px #635BFF4D',
+      backgroundColor: '#FF6347',
+      border: '0.2px solid #FF4500',
+      boxShadow: '0px 0px 60px 0px #FF63474D',
     },
     spotlight: '/assets/spotlight5.png',
     tags: [
       {
         id: 1,
-        name: 'React.js',
-        path: '/assets/react.svg',
+        name: 'C++',
+        path: '/assets/cplusplus.svg',
       },
       {
         id: 2,
-        name: 'TailwindCSS',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Framer Motion',
-        path: '/assets/framer.png',
+        name: 'G-Code',
+        path: '/assets/gcode.svg',
       },
     ],
   },
-];
-
+  {
+    title: 'Python Programming Projects',
+    desc: 'In 2021, I worked on various Python projects that focused on data processing, physical modeling, and visualization. Through these projects, I gained experience in creating simulations and processing large datasets, which I then visualized to provide meaningful insights. These projects allowed me to build a strong foundation in Python programming, particularly in data analysis and problem-solving applications.',
+    subdesc: 'The key takeaway from these projects was the ability to handle complex datasets and create intuitive visualizations that improved decision-making and analysis processes.',
+    href: '',
+    texture: '/textures/project/project6.mp4',
+    logo: '/assets/project-logo6.png',
+    logoStyle: {
+      backgroundColor: '#4682B4',
+      border: '0.2px solid #4169E1',
+      boxShadow: '0px 0px 60px 0px #4682B44D',
+    },
+    spotlight: '/assets/spotlight6.png',
+    tags: [
+      {
+        id: 1,
+        name: 'Python',
+        path: '/assets/python.svg',
+      },
+      {
+        id: 2,
+        name: 'Data Visualization',
+        path: '/assets/datavis.svg',
+      },
+    ],
+  }
+  
+]
 export const calculateSizes = (isSmall, isMobile, isTablet) => {
   return {
     deskScale: isSmall ? 0.05 : isMobile ? 0.06 : 0.065,
@@ -258,31 +181,57 @@ export const calculateSizes = (isSmall, isMobile, isTablet) => {
 };
 
 export const workExperiences = [
+  
   {
     id: 1,
-    name: 'Framer',
-    pos: 'Lead Web Developer',
-    duration: '2022 - Present',
-    title: "Framer serves as my go-to tool for creating interactive prototypes. I use it to bring designs to  life, allowing stakeholders to experience the user flow and interactions before development.",
-    icon: '/assets/framer.svg',
-    animation: 'victory',
-  },
-  {
-    id: 2,
-    name: 'Figma',
-    pos: 'Web Developer',
+    name: 'AKG Software Consulting ',
+    pos: 'Working Student',
     duration: '2020 - 2022',
-    title: "Figma is my collaborative design platform of choice. I utilize it to work seamlessly with team members and clients, facilitating real-time feedback and design iterations. Its cloud-based.",
-    icon: '/assets/figma.svg',
+    title: "At AKG Software Consulting, I developed automated setups, performed tests, and created technical drawings. I also received training in land acquisition and street planning, which refined my technical skills.",
+    icon: '/assets/akg_logo.png',
     animation: 'clapping',
   },
   {
-    id: 3,
-    name: 'Notion',
-    pos: 'Junior Web Developer',
-    duration: '2019 - 2020',
-    title: "Notion helps me keep my projects organized. I use it for project management, task tracking, and as a central hub for documentation, ensuring that everything from design notes to.",
-    icon: '/assets/notion.svg',
+    id: 2,
+    name: 'Innomotics',
+    pos: 'Working Student ',
+    duration: '2023 - 2024',
+    title: "At Innomotics (Siemens), I developed simulations for cooling electric motors using SimulationX and OpenModelica, created modules for heat and fluid networks with Modelica, and worked on both frontend and backend software development.",
+    icon: '/assets/innomotics_logo.jpeg',
     animation: 'salute',
+  },
+];
+export const studiedata = [
+  {
+    id: 1,
+    name: 'Elite High School, Tunisia',
+    pos: 'High School Student',
+    duration: '2015 - 2019',
+    title: 'Completed high school diploma with an average grade of 1.6, building a strong foundation for technical and engineering studies.',
+    icon: '/assets/tn.png', // Update with your preferred logo
+  },
+  {
+    id: 2,
+    name: 'f+u Academy of Languages, Berlin',
+    pos: 'Language Student',
+    duration: '2019 - 2020',
+    title: 'Completed an intensive German language course, achieving C1 level proficiency, certified by the TestDaF exam.',
+    icon: '/assets/fu_logo.png', // Update with your preferred logo
+  },
+  {
+    id: 3,
+    name: 'Technical University of Berlin, Mechanical Engineering (B.Sc.)',
+    pos: 'Bachelor Student',
+    duration: '09.2020 - 07.2024',
+    title: 'Graduated in July 2024, focusing on technical design, simulations, and mechanical engineering principles.',
+    icon: '/assets/TU-Berlin.png', // Update with your preferred logo
+  },
+  {
+    id: 4,
+    name: 'Technical University of Berlin, Computational Engineering Science (M.Sc.)',
+    pos: 'Master Student',
+    duration: '10.2022 - Present',
+    title: 'Currently pursuing a master’s degree, specializing in computational methods and advanced engineering simulations.',
+    icon: '/assets/TU-Berlin.png', // Update with your preferred logo
   },
 ];

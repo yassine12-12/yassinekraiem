@@ -6,36 +6,231 @@ Files: hacker-room-new.glb [34.62MB] > /Users/hsuwinlat/Desktop/jsm pj/threejscc
 
 import { useGLTF, useTexture } from '@react-three/drei';
 
-export function HackerRoom(props) {
-  const { nodes, materials } = useGLTF('/models/hacker-room.glb');
 
-  const monitortxt = useTexture('textures/desk/monitor.png');
-  const screenTxt = useTexture('textures/desk/screen.png');
+export function HackerRoom(props) {
+  const { nodes, materials } = useGLTF('/models/car.glb')
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.screen_screens_0.geometry} material={materials.screens}>
-        <meshMatcapMaterial map={screenTxt} />
-      </mesh>
-      <mesh geometry={nodes.screen_glass_glass_0.geometry} material={materials.glass} />
-      <mesh geometry={nodes.table_table_mat_0_1.geometry} material={materials.table_mat} />
-      <mesh geometry={nodes.table_table_mat_0_2.geometry} material={materials.computer_mat}>
-        <meshMatcapMaterial map={monitortxt} />
-      </mesh>
-      <mesh geometry={nodes.table_table_mat_0_3.geometry} material={materials.server_mat} />
-      <mesh geometry={nodes.table_table_mat_0_4.geometry} material={materials.vhsPlayer_mat} />
-      <mesh geometry={nodes.table_table_mat_0_5.geometry} material={materials.stand_mat} />
-      <mesh geometry={nodes.table_table_mat_0_6.geometry} material={materials.mat_mat} />
-      <mesh geometry={nodes.table_table_mat_0_7.geometry} material={materials.arm_mat} />
-      <mesh geometry={nodes.table_table_mat_0_8.geometry} material={materials.tv_mat}>
-        <meshMatcapMaterial map={monitortxt} />
-      </mesh>
-      <mesh geometry={nodes.table_table_mat_0_9.geometry} material={materials.cables_mat} />
-      <mesh geometry={nodes.table_table_mat_0_10.geometry} material={materials.props_mat} />
-      <mesh geometry={nodes.table_table_mat_0_11.geometry} material={materials.ground_mat} />
-      <mesh geometry={nodes.table_table_mat_0_12.geometry} material={materials.key_mat} />
+      <group position={[-0.142, -57.17, 0]} rotation={[-Math.PI / 2, 0.005, 0]} scale={0.025}>
+        <group rotation={[Math.PI / 2, 0, 0]}>
+          <group position={[0, 30.961, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Body_body01_0.geometry}
+              material={materials.body01}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Body_body01_0_1.geometry}
+              material={materials.body01}
+            />
+          </group>
+          <group position={[0, 30.961, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.interior_intr01_0.geometry}
+              material={materials.intr01}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.interior_intr01_0_1.geometry}
+              material={materials.intr01}
+            />
+          </group>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.floor_floor01_0.geometry}
+            material={materials.floor01}
+            position={[0, 0, -0.468]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.RearWheelR_rwheel01_0.geometry}
+            material={materials.rwheel01}
+            position={[-30.771, 14.214, -58.702]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.FrontWheelR_frwheel01_0.geometry}
+            material={materials.frwheel01}
+            position={[-30.771, 14.214, 74.921]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.FrontWheelL_frwheel01_0.geometry}
+            material={materials.frwheel01}
+            position={[30.771, 14.214, 74.921]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.roof_roof01_0.geometry}
+            material={materials.roof01}
+            position={[0, 30.961, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.LightsL_lights01_0.geometry}
+            material={materials.lights01}
+            position={[19.977, 24.032, -1.928]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.LightsR_lights01_0.geometry}
+            material={materials.lights01}
+            position={[-19.977, 24.032, -1.928]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.RearWheelL_rwheel01_0.geometry}
+            material={materials.rwheel01}
+            position={[30.771, 14.214, -58.702]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.STwheel_stwheel01_0.geometry}
+            material={materials.stwheel01}
+            position={[13.084, 38.265, 13.093]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.instruments_instr01_0.geometry}
+            material={materials.instr01}
+            position={[0, 39.655, 23.615]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.DoorL_body01_0.geometry}
+            material={materials.body01}
+            position={[26.019, 28.234, 5.554]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.DoorR_body01_0.geometry}
+            material={materials.body01}
+            position={[-26.019, 28.234, 5.554]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.IndoorL_intr01_0.geometry}
+            material={materials.intr01}
+            position={[24.65, 28.599, 6.949]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.IndoorR_intr01_0.geometry}
+            material={materials.intr01}
+            position={[-24.651, 28.599, 6.949]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.wingshild_Glass_0.geometry}
+            material={materials.Glass}
+            position={[0, 30.961, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.rearGlass_Glass_0.geometry}
+            material={materials.Glass}
+            position={[0, 30.961, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.instrGlass_InstrGlass_0.geometry}
+            material={materials.InstrGlass}
+            position={[0, 39.655, 23.615]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.StWGlass_StWGlass_0.geometry}
+            material={materials.StWGlass}
+            position={[13.084, 38.265, 13.093]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Buttons_ButtonGlass_0.geometry}
+            material={materials.ButtonGlass}
+            position={[0, 30.961, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.BtakeLight_BRKGlass_0.geometry}
+            material={materials.BRKGlass}
+            position={[19.977, 24.032, -1.928]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.TurnLight_TRNGlass_0.geometry}
+            material={materials.TRNGlass}
+            position={[19.977, 24.032, -1.928]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.HeadLight_HDLight_0.geometry}
+            material={materials.HDLight}
+            position={[19.977, 24.032, -1.928]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object001_body01_0.geometry}
+            material={materials.body01}
+            position={[0, 30.961, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+        </group>
+      </group>
     </group>
   );
 }
 
-useGLTF.preload('/models/hacker-room.glb');
+useGLTF.preload('/models/car.glb');
+export default HackerRoom;  
