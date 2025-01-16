@@ -4,7 +4,7 @@ const Studies = () => {
   return (
     <section className="c-space my-20 scroll-mt-20 " id="studies">
       <div className="w-full text-white-600">
-        <p className="head-text">Educational background</p>
+        <p className="head-text mb-10">Educational background</p>
 
         <div className="work-content">
           <div className="sm:py-10 py-5 sm:px-5 px-2.5">

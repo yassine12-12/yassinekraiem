@@ -7,13 +7,21 @@ export const navLinks = [
     name: 'Home',
     href: '#home',
   },
+
   {
     id: 2,
     name: 'About',
     href: '#about',
   },
+
   {
     id: 3,
+    name: 'Porjects', 
+    href: '#projects',
+  },
+
+  {
+    id:4,
     name: 'Work',
     href: '#work',
   },
@@ -23,7 +31,7 @@ export const navLinks = [
     href: '#studies',
   },
   {
-    id: 4,
+    id: 6,
     name: 'Contact',
     href: '#contact',
   },
@@ -39,9 +47,14 @@ export const myProjects = [
     title: 'Design of a Lifting Unit for a Bridge Crane',
     desc: 'This project involved designing a critical lifting unit for a bridge crane, focusing on the development of both brakes and gears according to industry standards. I utilized Solid Edge to create detailed 3D models and technical drawings, ensuring that the design was both efficient and safe for industrial application. The project showcased my ability to adhere to technical specifications while also delivering a functional and innovative solution.',
     subdesc: 'With this design, I aimed to improve the mechanical efficiency of the crane while ensuring safety and reliability in operation. The use of advanced 3D modeling tools was crucial in visualizing and refining the components.',
-    href: '',
+    href: '/assets/project2.pdf',
     texture: '/textures/project/project2.mp4',
     logo: '/assets/project-logo2.png',
+    category: "mechanical",
+    technologies: ["SolidEdge", "VDI-2221", "KISSsoft", "KISSsys"],
+    position: [0, -3,5, 10], // Initial position for the model
+    rotation: [0, 0, 0],  // Initial rotation for the model
+    scale: 0.015,  
     model: Hubwerkseinheit,
     logoStyle: {
       backgroundColor: '#13202F',
@@ -66,7 +79,11 @@ export const myProjects = [
     title: 'Creation of a Streaming Platform with AI',
     desc: 'In this project, I developed a cutting-edge platform that enabled real-time monitoring of CNC machines through AI-driven data analysis. By gathering information from sensors and cameras, the platform provided live feedback and enhanced anomaly detection. My focus was on improving operational efficiency by leveraging AI models that could process both image and time series data, ultimately enhancing the precision and speed of CNC operations.',
     subdesc: 'The platform not only increased machine productivity but also provided a reliable method for early anomaly detection, minimizing downtime and maintenance costs through proactive monitoring.',
-    href: '',
+    category: "computer-science",
+    technologies: ["Python", "YOLOv8", "KAFKA", "DOCKER", "Postgres"],
+
+    href: 'https://github.com/yassine12-12',
+
     texture: '/textures/project/project3.mp4',
     logo: '/assets/project-logo3.png',
     logoStyle: {
@@ -92,8 +109,13 @@ export const myProjects = [
     title: 'Design and Construction of a Processing Table for Robot-Assisted Plasma Cutting',
     desc: 'For my Bachelor thesis, I designed and constructed a modern processing table optimized for robot-assisted plasma cutting operations. The project followed VDI 2221 guidelines and involved extensive thermal load investigations and strength verifications. By leveraging advanced simulation software and conducting thermographic analysis using Python and OpenCV, I ensured that the table could withstand the intense thermal loads associated with plasma cutting, while maintaining structural integrity.',
     subdesc: 'This project not only showcased my ability to adhere to engineering standards but also allowed me to optimize industrial processes by using data-driven simulations and analysis.',
-    href: '',
+    href: '/assets/thesis.pdf',
     texture: '/textures/project/project4.mp4',
+    category: "mechanical",
+    technologies: ["SolidEdge","Inventor", "NASTRAN ", "VDI-2221", "Python", "OpenCV"],
+    position: [25,1, 0.9], // Initial position for the model
+    rotation: [-1.1, -0.05, 3],  // Initial rotation for the model
+    scale: 0.03,  
     logo: '/assets/project-logo4.png',
     model:Tisch,
     logoStyle: {
@@ -101,7 +123,7 @@ export const myProjects = [
       border: '0.2px solid #FFA500',
       boxShadow: '0px 0px 60px 0px #FFA5004D',
     },
-    spotlight: '/assets/spotlight4.png',
+    spotlight: '/assets/spotlight1.png',
     tags: [
       {
         id: 1,
@@ -120,6 +142,9 @@ export const myProjects = [
     desc: 'In this team project, I was responsible for programming an XY plotter using C++ and G-Code, which significantly improved the precision and performance of the CNC operations. This project demonstrated my technical abilities in low-level programming and automation, allowing for fine control over CNC machinery. The improved plotting accuracy reduced production errors and increased overall efficiency.',
     subdesc: 'By optimizing the code and machine operations, this project contributed to the successful implementation of CNC programming in real-world applications, demonstrating the benefits of custom G-Code solutions.',
     href: '',
+    category: "computer-science",
+    technologies: ["C++", "G-Code"],
+
     texture: '/textures/project/project5.mp4',
     logo: '/assets/project-logo5.png',
     logoStyle: {
@@ -146,6 +171,9 @@ export const myProjects = [
     desc: 'In 2021, I worked on various Python projects that focused on data processing, physical modeling, and visualization. Through these projects, I gained experience in creating simulations and processing large datasets, which I then visualized to provide meaningful insights. These projects allowed me to build a strong foundation in Python programming, particularly in data analysis and problem-solving applications.',
     subdesc: 'The key takeaway from these projects was the ability to handle complex datasets and create intuitive visualizations that improved decision-making and analysis processes.',
     href: '',
+    technologies: ["Python"],
+
+    category: "computer-science",
     texture: '/textures/project/project6.mp4',
     logo: '/assets/project-logo6.png',
     logoStyle: {
@@ -153,12 +181,12 @@ export const myProjects = [
       border: '0.2px solid #4169E1',
       boxShadow: '0px 0px 60px 0px #4682B44D',
     },
-    spotlight: '/assets/spotlight6.png',
+    spotlight: '/assets/spotlight1.png',
     tags: [
       {
         id: 1,
         name: 'Python',
-        path: '/assets/python.svg',
+        path: '/assets/python.png',
       },
       {
         id: 2,

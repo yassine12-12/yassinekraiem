@@ -1,127 +1,79 @@
-import emailjs from '@emailjs/browser';
-import { useRef, useState } from 'react';
-
-import useAlert from '../hooks/useAlert.js';
-import Alert from '../components/Alert.jsx';
+import { useState } from 'react';
 
 const Contact = () => {
-  const formRef = useRef();
+  const [copied, setCopied] = useState(false);
 
-  const { alert, showAlert, hideAlert } = useAlert();
-  const [loading, setLoading] = useState(false);
+  const email = 'kraiem_y@hotmail.fr'; // Replace with your email address
 
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-
-  const handleChange = ({ target: { name, value } }) => {
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: 'Yassine Kraiem',
-          from_email: form.email,
-          to_email: 'Kraiem_y@hotmail.fr',
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-      )
-      .then(
-        () => {
-          setLoading(false);
-          showAlert({
-            show: true,
-            text: 'Thank you for your message 😃',
-            type: 'success',
-          });
-
-          setTimeout(() => {
-            hideAlert(false);
-            setForm({
-              name: '',
-              email: '',
-              message: '',
-            });
-          }, [3000]);
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          showAlert({
-            show: true,
-            text: "I didn't receive your message 😢",
-            type: 'danger',
-          });
-        },
-      );
+  const handleCopy = () => {
+    navigator.clipboard.writeText(email).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    });
   };
 
   return (
     <section className="c-space my-20" id="contact">
-      {alert.show && <Alert {...alert} />}
+      <p className="text-white text-2xl font-semibold mb-8">Contact Me</p>
 
-      <div className="relative min-h-screen flex items-center justify-center flex-col work-content ">
-       
-        <div className="contact-container">
-          <h3 className="head-text">Get in Touch</h3>
-          <p className="text-lg text-white-600 mt-3">
-          I’m eager to collaborate! Whether it’s engineering, web development, or innovative projects, let’s make it happen.</p>
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 h-full">
+        {/* Contact Details */}
+        <div className="col-span-1 shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 rounded-lg bg-black-200 border border-black-300 bg-opacity-20 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-600/50 flex flex-col items-center text-center">
+          <h3 className="text-2xl font-bold text-gray-100 mb-4">Email</h3>
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Whether you have inquiries, want to collaborate on a project, or just have a question, feel free to get in touch!
+          </p>
 
+          <p className="text-xl font-semibold text-gray-100 mb-4">{email}</p>
+          <button
+            onClick={handleCopy}
+            className="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition duration-300"
+          >
+            {copied ? 'Email Copied!' : 'Copy Email'}
+          </button>
+        </div>
 
-          <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col space-y-7">
-            <label className="space-y-3">
-              <span className="field-label">Full Name</span>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="field-input"
-                placeholder="ex., John Doe"
-              />
-            </label>
+        {/* Social Media */}
+        <div className="col-span-2 shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 rounded-lg bg-black-200 border border-black-300 bg-opacity-20 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-600/50 flex flex-col items-center text-center">
+          <h3 className="text-2xl font-bold text-gray-100 mb-4">Connect on Social Media</h3>
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Prefer to reach out on social media? I'm available on these platforms:
+          </p>
 
-            <label className="space-y-3">
-              <span className="field-label">Email address</span>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="field-input"
-                placeholder="ex., johndoe@gmail.com"
-              />
-            </label>
-
-            <label className="space-y-3">
-              <span className="field-label">Your message</span>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="field-input"
-                placeholder="Share your thoughts or inquiries..."
-              />
-            </label>
-
-            <button className="field-btn" type="submit" disabled={loading}>
-              {loading ? 'Sending...' : 'Send Message'}
-
-              <img src="/assets/arrow-up.png" alt="arrow-up" className="field-btn_arrow" />
-            </button>
-          </form>
+          <div className="flex space-x-6">
+            <a
+              href="https://github.com/yassine12-12"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
+            >
+              <img src="/assets/github.svg" alt="GitHub" className="w-6 h-6" />
+            </a>
+            <a
+              href="https://twitter.com/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
+            >
+              <img src="/assets/twitter.svg" alt="Twitter" className="w-6 h-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
+            >
+              <img src="/assets/linkedIn.svg" alt="LinkedIn" className="w-6 h-6" />
+            </a>
+            <a
+              href="https://instagram.com/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
+            >
+              <img src="/assets/instagram.svg" alt="Instagram" className="w-6 h-6" />
+            </a>
+          </div>
         </div>
       </div>
     </section>

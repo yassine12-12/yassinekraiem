@@ -1,140 +1,172 @@
-import { gsap } from 'gsap';
-import { useEffect, useState } from 'react';
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import { Leva, useControls } from 'leva';
-import { myProjects, calculateSizes } from '../constants/index.js';
+import { myProjects } from '../constants/index.js';
 import CanvasLoader from '../components/Loading.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
-import { Hubwerkseinheit } from '../components/Hubwerkseinheit.jsx';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useMediaQuery } from 'react-responsive';
-import Cube from '../components/Cube.jsx';
-import Rings from '../components/Rings.jsx';
-import ReactLogo from '../components/ReactLogo.jsx';
-import Button from '../components/Button.jsx';
-import Target from '../components/Target.jsx';
-import { HackerRoom } from '../components/HackerRoom.jsx';
-import { Tisch } from '../components/Tisch.jsx';
 
 const Projects = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-  const projectCount = myProjects.length;
-
-  const { positionX, positionY, positionZ, rotationX, rotationY, rotationZ, scale } = useControls({
-    positionX: { value: 0, min: -10, max: 10, step: 0.1 },
-    positionY: { value: 0, min: -10, max: 10, step: 0.1 },
-    positionZ: { value: 0, min: -10, max: 10, step: 0.1 },
-    rotationX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
-    rotationY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
-    rotationZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
-    scale: { value: 0.01, min: 0.01, max: 10, step: 0.01 },
-  });
-
-  useEffect(() => {
-    gsap.fromTo(
-      `.animatedText`,
-      { opacity: 0 },
-      { opacity: 1, duration: 1, stagger: 0.2, ease: 'power2.inOut' }
-    );
-  }, [selectedProjectIndex]);
-
-  const handleNavigation = (direction) => {
-    setSelectedProjectIndex((prevIndex) => {
-      if (direction === 'previous') return prevIndex === 0 ? projectCount - 1 : prevIndex - 1;
-      else return prevIndex === projectCount - 1 ? 0 : prevIndex + 1;
-    });
-  };
-
-  const currentProject = myProjects[selectedProjectIndex];
 
 
-  return (
-    <section className="c-space my-20">
-      <p className="head-text">My Selected Work</p>
-
-      <div className="grid  grid-cols-1 mt-12 gap-5 w-full">
-        <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
-          <div className="absolute top-0 right-0">
-            <img src={currentProject.spotlight} alt="spotlight" className="w-full h-96 object-cover rounded-xl" />
-          </div>
-
-          
-          <div className="flex flex-col gap-5 text-white-600 my-5">
-            <p className="text-white text-2xl font-semibold animatedText">{currentProject.title}</p>
-
-            <p className="animatedText">{currentProject.desc}</p>
-            <p className="animatedText">{currentProject.subdesc}</p>
-          </div>
-
-          <div className="flex items-center justify-between flex-wrap gap-5">
-            <div className="flex items-center gap-3">
-              {currentProject.tags.map((tag, index) => (
-                <div key={index} className="tech-logo">
-                  <img src={tag.path} alt={tag.name} />
-                </div>
-              ))}
-            </div>
-
-            <a
-              className="flex items-center gap-2 cursor-pointer text-white-600"
-              href={currentProject.href}
-              target="_blank"
-              rel="noreferrer">
-              <p>Check Live Site</p>
-              <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
-            </a>
-          </div>
-
-          <div className="flex justify-between items-center mt-7">
-            <button className="arrow-btn" onClick={() => handleNavigation('previous')}>
-              <img src="/assets/left-arrow.png" alt="left arrow" />
-            </button>
-
-            <button className="arrow-btn" onClick={() => handleNavigation('next')}>
-              <img src="/assets/right-arrow.png" alt="right arrow" className="w-4 h-4" />
-            </button>
-          </div>
-          <Leva />
-
-            <Canvas className='w-full h-full'>
-              <Suspense fallback={<CanvasLoader />}>
-                {/* Leva Panel Hidden */}
-
-                {/* Position the camera further back */}
-                <PerspectiveCamera makeDefault position={[0, 0, 10]} />
-
-                {/* HeroCamera Wrapper for Tisch */}
-                <HeroCamera isMobile={isMobile}>
-                   {/* Dynamically Render the Model */}
-                {currentProject.model && (
-                  <currentProject.model
-                 
-                    position={[positionX, positionY, positionZ]}
-                   rotation={[rotationX, rotationY, rotationZ]}
-                   scale={0.020}/>
-                )}
-                  
-                  
-                </HeroCamera>
-
-                {/* Lights */}
-                <ambientLight intensity={1.8} />
-                <directionalLight position={[10, 10, 10]} intensity={1} />
-
-                {/* OrbitControls for mouse interaction */}
-                <OrbitControls enableZoom={true} enableRotate={true} enablePan={true} />
-              </Suspense>
-            </Canvas>
-
+  // Categorize projects
+  const mechanicalProjects = myProjects.filter((project) => project.category === 'mechanical');
+  const computerScienceProjects = myProjects.filter((project) => project.category === 'computer-science');
+  const renderMechanicalProjects = (projects) =>
+    projects.map((project, index) => (
+      <div
+        key={index}
+        className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200 border border-black-300 rounded-xl min-h-[550px]"
+      >
+        <div className="absolute top-0 right-0">
+          <img
+            src={project.spotlight}
+            alt="spotlight"
+            className="w-full h-96 object-cover rounded-xl"
+          />
         </div>
 
-        
+        <div className="flex flex-col gap-5 text-white-600 my-5 flex-grow">
+          <p className="text-white text-2xl font-semibold">{project.title}</p>
+          <p>{project.desc}</p>
+          <p>{project.subdesc}</p>
+        </div>
+
+        {/* Technologies Used */}
+        <div className="flex flex-wrap gap-2 mt-5">
+          <p className="text-white text-lg font-semibold">Technologies Used:</p>
+          <ul className="flex gap-2 flex-wrap">
+            {project.technologies.map((tech, index) => (
+              <li
+                key={index}
+                className="px-3 py-1 bg-gray-700 text-white text-sm rounded-lg shadow"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <Canvas className="w-full h-80 mt-5">
+          <Suspense fallback={<CanvasLoader />}>
+            <PerspectiveCamera makeDefault position={project.position || [0, 0, 10]} />
+            <HeroCamera isMobile={isMobile}>
+              {project.model && (
+                <project.model
+                  position={project.position || [0, 0, 0]} // Dynamically imported position
+                  rotation={project.rotation || [0, 0, 0]} // Dynamically imported rotation
+                  scale={project.scale || 0.02}
+                />
+              )}
+            </HeroCamera>
+            <ambientLight intensity={1.8} />
+            <directionalLight position={[10, 10, 10]} intensity={1} />
+            <OrbitControls enableZoom enableRotate enablePan />
+          </Suspense>
+        </Canvas>
+        <div className="flex justify-end mt-auto">
+  {project.href ? (
+    <a
+      className="flex items-center gap-2 cursor-pointer text-white-600 hover:text-white-300 hover:underline transition duration-200"
+      href={project.href}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <p>Check Project Documentation</p>
+      <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
+    </a>
+  ) : (
+    <p className="text-white-600 text-sm italic">Link not available</p>
+  )}
+</div>
+
+
       </div>
+    ));
+
+
+  const renderComputerScienceProjects = (projects) =>
+    projects.map((project, index) => (
+      <div
+        key={index}
+        className="flex flex-col justify-between gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200 border border-black-300 rounded-xl h-auto"
+      >
+        <div className="absolute top-0 right-0">
+          <img
+            src={project.spotlight}
+            alt="spotlight"
+            className="w-full h-60 object-cover rounded-xl"
+          />
+        </div>
+
+        <div className="flex flex-col gap-5 text-white-600 my-5 flex-grow">
+          <p className="text-white text-2xl font-semibold">{project.title}</p>
+          <p>{project.desc}</p>
+          <p>{project.subdesc}</p>
+        </div>
+
+        {/* Technologies Used */}
+        <div className="flex flex-wrap gap-2 mt-5">
+          <p className="text-white text-lg font-semibold">Technologies Used:</p>
+          <ul className="flex gap-2 flex-wrap">
+            {project.technologies.map((tech, index) => (
+              <li
+                key={index}
+                className="px-3 py-1 bg-gray-700 text-white text-sm rounded-lg shadow"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex justify-end mt-auto">
+          {project.href ? (
+            <a
+              className="flex items-center gap-2 cursor-pointer text-white-600 hover:text-white-300 hover:underline transition duration-200 "
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <p>Check GitHub Repository</p>
+              <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
+            </a>
+          ) : (
+            <p className="text-white-600 text-sm italic">Link not available</p>
+          )}
+        </div>
+
+
+      </div>
+    ));
+
+  return (
+    <section className="c-space my-20 scroll-mt-20" id="projects">
+      {/* Mechanical Engineering Projects */}
+      <div>
+        <h2 className="text-3xl font-bold text-white my-10">Mechanical Engineering Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 items-stretch">
+          {renderMechanicalProjects(mechanicalProjects)}
+        </div>
+      </div>
+
+      {/* Computer Science Projects */}
+      <div>
+        <h2 className="text-3xl font-bold text-white my-10">Computer Science Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 items-stretch">
+          {renderComputerScienceProjects(computerScienceProjects)}
+        </div>
+      </div>
+
+      <Leva />
     </section>
   );
+
+
+
 };
 
-export default Projects;
+export default Projects; 
