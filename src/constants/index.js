@@ -224,7 +224,7 @@ export const workExperiences = [
     name: 'Innomotics',
     pos: 'Working Student ',
     duration: '2023 - 2024',
-    title: "At Innomotics (Siemens), I developed simulations for cooling electric motors using SimulationX and OpenModelica, created modules for heat and fluid networks with Modelica, and worked on both frontend and backend software development.",
+    title: "At Innomotics (Siemens), I developed simulations for cooling electric motors using SimulationX and Modelica, created modules for heat and fluid networks with Modelica, and worked on both frontend and backend software development.",
     icon: '/assets/innomotics_logo.jpeg',
     animation: 'salute',
   },
