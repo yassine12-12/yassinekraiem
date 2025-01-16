@@ -16,9 +16,9 @@ const Contact = () => {
     <section className="c-space my-20" id="contact">
       <p className="text-white text-2xl font-semibold mb-8">Contact Me</p>
 
-      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 h-full">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-8 h-full">
         {/* Contact Details */}
-        <div className="col-span-1 shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 rounded-lg bg-black-200 border border-black-300 bg-opacity-20 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-600/50 flex flex-col items-center text-center">
+        <div className="shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 rounded-lg bg-black-200 border border-black-300 bg-opacity-20 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-600/50 flex flex-col items-center text-center">
           <h3 className="text-2xl font-bold text-gray-100 mb-4">Email</h3>
           <p className="text-gray-300 leading-relaxed mb-6">
             Whether you have inquiries, want to collaborate on a project, or just have a question, feel free to get in touch!
@@ -34,7 +34,7 @@ const Contact = () => {
         </div>
 
         {/* Social Media */}
-        <div className="col-span-2 shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 rounded-lg bg-black-200 border border-black-300 bg-opacity-20 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-600/50 flex flex-col items-center text-center">
+        <div className="shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 rounded-lg bg-black-200 border border-black-300 bg-opacity-20 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-600/50 flex flex-col items-center text-center">
           <h3 className="text-2xl font-bold text-gray-100 mb-4">Connect on Social Media</h3>
           <p className="text-gray-300 leading-relaxed mb-6">
             Prefer to reach out on social media? I'm available on these platforms:
