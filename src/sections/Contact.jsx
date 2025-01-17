@@ -49,16 +49,9 @@ const Contact = () => {
             >
               <img src="/assets/github.svg" alt="GitHub" className="w-6 h-6" />
             </a>
+            
             <a
-              href="https://twitter.com/yourprofile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
-            >
-              <img src="/assets/twitter.svg" alt="Twitter" className="w-6 h-6" />
-            </a>
-            <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/kraiemyassine/"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
@@ -66,7 +59,7 @@ const Contact = () => {
               <img src="/assets/linkedIn.svg" alt="LinkedIn" className="w-6 h-6" />
             </a>
             <a
-              href="https://instagram.com/yourprofile"
+              href="https://www.instagram.com/kraiemyassin/"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-600/50 bg-gray-700 p-3 rounded-full"
