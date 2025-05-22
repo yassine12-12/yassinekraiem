@@ -14,24 +14,27 @@ export const navLinks = [
     href: '#about',
   },
 
-  {
-    id: 3,
-    name: 'Porjects', 
-    href: '#projects',
-  },
+
 
   {
-    id:4,
+    id:3,
     name: 'Work',
     href: '#work',
   },
   {
-    id: 5,
+    id: 4,
     name: 'Studies',
     href: '#studies',
   },
-  {
+   
+   {
     id: 6,
+    name: 'Porjects', 
+    href: '#projects',
+  },
+  
+  {
+    id: 5,
     name: 'Contact',
     href: '#contact',
   },
@@ -137,6 +140,113 @@ export const myProjects = [
       },
     ],
   },
+  
+  {
+    title: 'Personal Portfolio Website',
+    desc: 'Designed and developed a responsive personal website to showcase projects and skills. Implemented modern UI with Next.js, Tailwind CSS, and Figma-based design system. Deployed via Vercel with fully responsive layout and dark mode support.',
+    subdesc: 'This project highlights my ability to build and deploy modern, user-friendly web applications with a focus on design and accessibility.',
+    href: 'https://yassinekraiem.vercel.app',
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Vercel', 'Figma'],
+    category: 'computer-science',
+    texture: '',
+    logo: '',
+    logoStyle: {
+      backgroundColor: '#111827',
+      border: '0.2px solid #374151',
+      boxShadow: '0px 0px 60px 0px #1118274D',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      { id: 1, name: 'React', path: '' },
+      { id: 2, name: 'Next.js', path: '' },
+      { id: 3, name: 'Tailwind CSS', path: '' },
+      { id: 4, name: 'Vercel', path: '' },
+      { id: 5, name: 'Figma', path: '' },
+    ],
+  },
+  {
+    title: 'Pulley-Based Lifting Device',
+    desc: 'Developed a compact, safe lifting system using gear design, tolerance analysis, and strength verification. Conducted optimization with Kutzbach plans and gear dimensioning in KISSsoft.',
+    subdesc: 'This project focused on mechanical optimization and safety in lifting systems, utilizing advanced gear design and analysis tools.',
+    href: '',
+    technologies: ['VDI-2221', 'Solid Edge'],
+    category: 'mechanical',
+    texture: '',
+    logo: '',
+    logoStyle: {
+      backgroundColor: '#2F4F4F',
+      border: '0.2px solid #708090',
+      boxShadow: '0px 0px 60px 0px #2F4F4F4D',
+    },
+    spotlight: '/assets/spotlight2.png',
+    tags: [
+      { id: 1, name: 'VDI-2221', path: '' },
+      { id: 2, name: 'Solid Edge', path: '' },
+    ],
+  },
+  {
+    title: 'Machine Learning for Aging and Longevity',
+    desc: 'Compared Random Forest, XGBoost, and SVM on a health dataset with over 10 features. Applied EDA, bias auditing (age fairness), and SHAP for model explainability.',
+    subdesc: 'Focused on model comparison, fairness, and explainability in health data analytics.',
+    href: '',
+    technologies: ['Python', 'scikit-learn', 'SHAP'],
+    category: 'computer-science',
+    texture: '',
+    logo: '',
+    logoStyle: {
+      backgroundColor: '#4B5563',
+      border: '0.2px solid #6B7280',
+      boxShadow: '0px 0px 60px 0px #4B55634D',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      { id: 1, name: 'Python', path: '' },
+      { id: 2, name: 'scikit-learn', path: '' },
+      { id: 3, name: 'SHAP', path: '' },
+    ],
+  },
+  {
+    title: 'Numerical Control and Toolpath Planning',
+    desc: 'Generated 2D and 3D trajectories using Bézier curves and cubic splines. Implemented symbolic arc length and curvature calculation for CNC/robot motion paths.',
+    subdesc: 'Demonstrated advanced path planning and symbolic computation for CNC and robotics.',
+    href: '',
+    technologies: ['Python', 'NumPy'],
+    category: 'computer-science',
+    texture: '',
+    logo: '',
+    logoStyle: {
+      backgroundColor: '#2563EB',
+      border: '0.2px solid #1D4ED8',
+      boxShadow: '0px 0px 60px 0px #2563EB4D',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      { id: 1, name: 'Python', path: '' },
+      { id: 2, name: 'NumPy', path: '' },
+
+    ],
+  },
+  {
+    title: 'Deep Learning Course Projects',
+    desc: 'Designed CNNs, LSTMs, and Autoencoders for classification, time series, and anomaly detection. Applied batch norm, early stopping, ROC curve evaluation, and model tuning.',
+    subdesc: 'Hands-on experience with deep learning architectures and model evaluation.',
+    href: 'https://github.com/yassine12-12/deep-learning-projects',
+    technologies: ['Python', 'TensorFlow', 'Keras'],
+    category: 'computer-science',
+    texture: '',
+    logo: '',
+    logoStyle: {
+      backgroundColor: '#F59E42',
+      border: '0.2px solid #F59E42',
+      boxShadow: '0px 0px 60px 0px #F59E424D',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      { id: 1, name: 'Python', path: '' },
+      { id: 2, name: 'TensorFlow', path: '' },
+      { id: 3, name: 'Keras', path: '' },
+    ],
+  },
   {
     title: 'CNC Machine Programming with C++',
     desc: 'In this team project, I was responsible for programming an XY plotter using C++ and G-Code, which significantly improved the precision and performance of the CNC operations. This project demonstrated my technical abilities in low-level programming and automation, allowing for fine control over CNC machinery. The improved plotting accuracy reduced production errors and increased overall efficiency.',
@@ -166,35 +276,7 @@ export const myProjects = [
       },
     ],
   },
-  {
-    title: 'Python Programming Projects',
-    desc: 'In 2021, I worked on various Python projects that focused on data processing, physical modeling, and visualization. Through these projects, I gained experience in creating simulations and processing large datasets, which I then visualized to provide meaningful insights. These projects allowed me to build a strong foundation in Python programming, particularly in data analysis and problem-solving applications.',
-    subdesc: 'The key takeaway from these projects was the ability to handle complex datasets and create intuitive visualizations that improved decision-making and analysis processes.',
-    href: '',
-    technologies: ["Python"],
-
-    category: "computer-science",
-    texture: '/textures/project/project6.mp4',
-    logo: '/assets/project-logo6.png',
-    logoStyle: {
-      backgroundColor: '#4682B4',
-      border: '0.2px solid #4169E1',
-      boxShadow: '0px 0px 60px 0px #4682B44D',
-    },
-    spotlight: '/assets/spotlight1.png',
-    tags: [
-      {
-        id: 1,
-        name: 'Python',
-        path: '/assets/python.png',
-      },
-      {
-        id: 2,
-        name: 'Data Visualization',
-        path: '/assets/datavis.svg',
-      },
-    ],
-  }
+  
   
 ]
 export const calculateSizes = (isSmall, isMobile, isTablet) => {
@@ -209,7 +291,15 @@ export const calculateSizes = (isSmall, isMobile, isTablet) => {
 };
 
 export const workExperiences = [
-  
+   {
+    id: 2,
+    name: 'Innomotics',
+    pos: 'Working Student ',
+    duration: '2023 - Present',
+    title: "At Innomotics (Siemens), I developed simulations for cooling electric motors using SimulationX and Modelica, created modules for heat and fluid networks with Modelica.",
+    icon: '/assets/innomotics_logo.jpeg',
+    animation: 'salute',
+  },
   {
     id: 1,
     name: 'AKG Software Consulting ',
@@ -219,24 +309,25 @@ export const workExperiences = [
     icon: '/assets/akg_logo.png',
     animation: 'clapping',
   },
-  {
-    id: 2,
-    name: 'Innomotics',
-    pos: 'Working Student ',
-    duration: '2023 - 2024',
-    title: "At Innomotics (Siemens), I developed simulations for cooling electric motors using SimulationX and Modelica, created modules for heat and fluid networks with Modelica.",
-    icon: '/assets/innomotics_logo.jpeg',
-    animation: 'salute',
-  },
+ 
 ];
 export const studiedata = [
   {
-    id: 1,
-    name: 'Elite High School, Tunisia',
-    pos: 'High School Student',
-    duration: '2015 - 2019',
-    title: 'Completed high school diploma with an average grade of 1.6, building a strong foundation for technical and engineering studies.',
-    icon: '/assets/tn.png', // Update with your preferred logo
+    id: 4,
+    name: 'Technical University of Berlin, Computational Engineering Science (M.Sc.)',
+    pos: 'Master Student',
+    duration: '10.2024 - Present',
+    title: 'Currently pursuing a master’s degree, specializing in computational methods and advanced engineering simulations.',
+    icon: '/assets/TU-Berlin.png', // Update with your preferred logo
+  },
+  
+  {
+    id: 3,
+    name: 'Technical University of Berlin, Mechanical Engineering (B.Sc.)',
+    pos: 'Bachelor Student',
+    duration: '09.2020 - 07.2024',
+    title: 'Graduated in July 2024, focusing on technical design, simulations, and mechanical engineering principles.',
+    icon: '/assets/TU-Berlin.png', // Update with your preferred logo
   },
   {
     id: 2,
@@ -247,19 +338,11 @@ export const studiedata = [
     icon: '/assets/fu_logo.png', // Update with your preferred logo
   },
   {
-    id: 3,
-    name: 'Technical University of Berlin, Mechanical Engineering (B.Sc.)',
-    pos: 'Bachelor Student',
-    duration: '09.2020 - 07.2024',
-    title: 'Graduated in July 2024, focusing on technical design, simulations, and mechanical engineering principles.',
-    icon: '/assets/TU-Berlin.png', // Update with your preferred logo
-  },
-  {
-    id: 4,
-    name: 'Technical University of Berlin, Computational Engineering Science (M.Sc.)',
-    pos: 'Master Student',
-    duration: '10.2022 - Present',
-    title: 'Currently pursuing a master’s degree, specializing in computational methods and advanced engineering simulations.',
-    icon: '/assets/TU-Berlin.png', // Update with your preferred logo
+    id: 1,
+    name: 'Elite High School, Tunisia',
+    pos: 'High School Student',
+    duration: '2015 - 2019',
+    title: 'Completed high school diploma with an average grade of 1.6, building a strong foundation for technical and engineering studies.',
+    icon: '/assets/tn.png', // Update with your preferred logo
   },
 ];
