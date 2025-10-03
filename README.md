@@ -9,6 +9,10 @@
 
 A modern, interactive 3D portfolio website showcasing engineering projects and professional experience with immersive Three.js animations.
 
+## 📸 Preview
+
+![Website Preview](website.png)
+
 ##  Features
 
 -  Interactive 3D models and animations
