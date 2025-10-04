@@ -67,11 +67,11 @@ const Hero = () => {
           </motion.span>
         </motion.p>
         <motion.p
-          className="hero_tag text-neon_gradient bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
+          className="hero_tag text-white/80"
           variants={textVariants}
           whileHover={{ scale: 1.05 }}
         >
-          AI/Data Science Engineer building intelligent solutions for industry automation.
+          AI/Data Science Engineer building intelligent solutions.
         </motion.p>
       </motion.div>
     </motion.section>
