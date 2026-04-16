@@ -5,7 +5,7 @@ import { useGLTF, useTexture } from '@react-three/drei';
 
 
 export function Hubwerkseinheit(props) {
-    const { nodes, materials } = useGLTF('/models//Hubwerkseinheit.glb')
+    const { nodes, materials } = useGLTF('/models/Hubwerkseinheit.glb')
   return (
     <group {...props} dispose={null}>
       <mesh

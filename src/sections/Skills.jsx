@@ -1,43 +1,43 @@
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Programming Languages",
-      icon: "💻",
+      title: "Generative AI & LLMs",
+      icon: "🧠",
       skills: [
-        { name: "Python", level: 95, color: "from-blue-500 to-yellow-500" },
-        { name: "JavaScript", level: 85, color: "from-yellow-400 to-yellow-600" },
-        { name: "SQL", level: 90, color: "from-blue-600 to-blue-800" },
-        { name: "MATLAB", level: 80, color: "from-orange-500 to-red-500" }
+        { name: "LLM Integration", level: 88, color: "from-violet-500 to-purple-600" },
+        { name: "Prompt Engineering", level: 90, color: "from-purple-500 to-pink-500" },
+        { name: "Google Gemini", level: 85, color: "from-blue-400 to-indigo-500" },
+        { name: "Multimodal AI (CLIP)", level: 82, color: "from-pink-500 to-rose-500" }
       ]
     },
     {
-      title: "AI/ML Frameworks",
-      icon: "🤖",
+      title: "Computer Vision & ML",
+      icon: "👁️",
       skills: [
-        { name: "TensorFlow", level: 90, color: "from-orange-400 to-orange-600" },
-        { name: "PyTorch", level: 85, color: "from-red-500 to-orange-500" },
-        { name: "Scikit-learn", level: 95, color: "from-blue-400 to-indigo-500" },
-        { name: "OpenCV", level: 88, color: "from-green-400 to-blue-500" }
+        { name: "YOLOv8", level: 90, color: "from-green-400 to-emerald-500" },
+        { name: "OpenCV", level: 88, color: "from-green-500 to-blue-500" },
+        { name: "Scikit-learn / XGBoost", level: 92, color: "from-blue-400 to-indigo-500" },
+        { name: "TensorFlow / PyTorch", level: 85, color: "from-orange-400 to-red-500" }
       ]
     },
     {
-      title: "Data & Analytics",
+      title: "Data & Backend",
       icon: "📊",
       skills: [
-        { name: "Pandas", level: 95, color: "from-purple-500 to-pink-500" },
-        { name: "NumPy", level: 92, color: "from-blue-500 to-cyan-500" },
-        { name: "Plotly", level: 88, color: "from-indigo-500 to-purple-600" },
-        { name: "Apache Kafka", level: 75, color: "from-gray-600 to-gray-800" }
+        { name: "Python / FastAPI", level: 95, color: "from-blue-500 to-yellow-500" },
+        { name: "Pandas / NumPy", level: 93, color: "from-purple-500 to-pink-500" },
+        { name: "Plotly / Dash", level: 88, color: "from-indigo-500 to-purple-600" },
+        { name: "Apache Kafka", level: 78, color: "from-gray-500 to-gray-700" }
       ]
     },
     {
-      title: "Tools & Technologies",
-      icon: "🛠️",
+      title: "MLOps & Infrastructure",
+      icon: "⚙️",
       skills: [
         { name: "Docker", level: 85, color: "from-blue-400 to-blue-600" },
-        { name: "Git", level: 90, color: "from-orange-500 to-red-600" },
-        { name: "PostgreSQL", level: 80, color: "from-blue-600 to-indigo-600" },
-        { name: "Linux", level: 85, color: "from-yellow-500 to-orange-500" }
+        { name: "PostgreSQL / OPC UA", level: 80, color: "from-blue-600 to-indigo-600" },
+        { name: "Git / CI", level: 90, color: "from-orange-500 to-red-600" },
+        { name: "React / Node.js", level: 82, color: "from-cyan-400 to-blue-500" }
       ]
     }
   ];

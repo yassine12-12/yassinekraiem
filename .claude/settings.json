@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/yassinekraiem/Documents/yassinekraiem ls-tree origin/main --name-only)"
+    ]
+  }
+}

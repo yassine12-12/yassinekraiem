@@ -140,71 +140,100 @@ const Hero = () => {
         className="relative z-10 w-full mx-auto flex flex-col justify-center items-center min-h-screen c-space gap-8"
         variants={titleVariants}
       >
-        {/* Main Title with Glow Effect */}
-        <motion.div 
-          className="relative text-center"
-          variants={titleVariants}
-        >
+        {/* Two-column layout: text left, photo right */}
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-6xl">
+
+          {/* Left: Text content */}
+          <div className="flex flex-col items-center lg:items-start gap-6 text-center lg:text-left flex-1">
+            {/* Main Title */}
+            <motion.div className="relative" variants={titleVariants}>
+              <motion.div
+                className="absolute inset-0 bg-white/10 blur-2xl opacity-30"
+                variants={glowVariants}
+                animate="pulse"
+              />
+              <motion.h1
+                className="relative text-6xl md:text-8xl lg:text-9xl font-black text-white font-generalsans leading-none"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                YASSINE
+              </motion.h1>
+            </motion.div>
+
+            {/* Subtitle */}
+            <motion.div className="space-y-3" variants={subtitleVariants}>
+              <motion.h2
+                className="text-2xl md:text-4xl font-bold text-white font-generalsans"
+                variants={floatingVariants}
+                animate="float"
+              >
+                AI/Data Science Engineer
+              </motion.h2>
+              <motion.p
+                className="text-lg md:text-xl text-gray-300 max-w-xl leading-relaxed"
+                variants={taglineVariants}
+              >
+                Building intelligent solutions with cutting-edge technology and innovative design
+              </motion.p>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 mt-2"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            >
+              <motion.button
+                className="px-8 py-4 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300 shadow-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                View My Work
+              </motion.button>
+              <motion.button
+                className="px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-black transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Get In Touch
+              </motion.button>
+            </motion.div>
+          </div>
+
+          {/* Right: Profile photo */}
           <motion.div
-            className="absolute inset-0 bg-white/10 blur-2xl opacity-30"
-            variants={glowVariants}
-            animate="pulse"
-          />
-          <motion.h1
-            className="relative text-6xl md:text-8xl lg:text-9xl font-black text-white font-generalsans leading-none"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            className="relative flex-shrink-0"
+            initial={{ opacity: 0, scale: 0.8, x: 60 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            YASSINE
-          </motion.h1>
-        </motion.div>
+            {/* Outer glow ring */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-white/10 blur-2xl"
+              variants={glowVariants}
+              animate="pulse"
+            />
+            {/* Rotating dashed border */}
+            <motion.div
+              className="absolute -inset-3 rounded-full border-2 border-dashed border-white/20"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+            {/* Photo */}
+            <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+              <img
+                src="/assets/yassine.png"
+                alt="Yassine Kraiem"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+          </motion.div>
 
-        {/* Subtitle */}
-        <motion.div
-          className="text-center space-y-4"
-          variants={subtitleVariants}
-        >
-          <motion.h2
-            className="text-2xl md:text-4xl font-bold text-white font-generalsans"
-            variants={floatingVariants}
-            animate="float"
-          >
-            AI/Data Science Engineer
-          </motion.h2>
-          
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
-            variants={taglineVariants}
-          >
-            Building intelligent solutions with cutting-edge technology and innovative design
-          </motion.p>
-        </motion.div>
-
-        {/* Interactive Elements */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-6 mt-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-        >
-          <motion.button
-            className="px-8 py-4 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300 shadow-lg"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            View My Work
-          </motion.button>
-          
-          <motion.button
-            className="px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-black transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Get In Touch
-          </motion.button>
-        </motion.div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div

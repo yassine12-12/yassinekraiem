@@ -26,8 +26,10 @@ const About = () => {
   };
 
   const skills = [
-    "Machine Learning", "Deep Learning", "Computer Vision", "Python", "TensorFlow", 
-    "Data Analysis", "Engineering Design", "React", "Three.js", "AI Research"
+    "Generative AI", "LLM Integration", "Prompt Engineering",
+    "Computer Vision", "YOLOv8", "CLIP",
+    "Machine Learning", "Deep Learning",
+    "Python", "MLOps", "Industrial AI",
   ];
 
   return (
