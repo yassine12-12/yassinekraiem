@@ -94,16 +94,16 @@ export const studiedata = [
 export const myProjects = [
   {
     title: 'AI-Powered Assembly Work Instruction Generator',
-    desc: 'Automatically generates structured, bilingual (DE/EN) assembly work instructions (PDF) from a raw assembly video. Uses CLIP-based video segmentation, OpenCV part extraction, and Google Gemini for SOP generation.',
+    desc: 'Automatically generates structured, bilingual (DE/EN) assembly work instructions (PDF) from a raw assembly video.',
     subdesc: 'Reduces manual work instruction authoring effort by up to 90% for structured assembly processes, validated on multiple assembly types.',
     href: 'https://github.com/yassine12-12/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
     github: 'https://github.com/yassine12-12/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
     category: 'computer-science',
-    technologies: ['Python', 'FastAPI', 'React', 'Google Gemini', 'LLM', 'CLIP', 'OpenCV', 'ReportLab', 'Pydantic'],
+    technologies: ['Python', 'FastAPI', 'React', 'LLM', 'OpenCV', 'ReportLab', 'Pydantic'],
     features: [
       'CV pipeline (8-step: grayscale → blur → threshold → contour detection) to isolate individual parts from the first video frame',
-      'CLIP frame embeddings enriched with temporal encoding, clustered via k-Means to build a visual storyboard',
-      'Gemini-powered part verification filters out noise and background artefacts before SOP generation',
+      'Frame embeddings enriched with temporal encoding, clustered via k-Means to build a visual storyboard',
+      'LLM-powered part verification filters out noise and background artefacts before SOP generation',
       'Structured bilingual SOP (DE/EN) with bill of materials, illustrated steps, and quality checks — generated via 6-iteration prompt refinement',
       'ReportLab PDF export and multi-page React editor for review and download',
       'Four processing presets (Default, High Quality, Balanced, Custom) configurable from the web UI'
@@ -119,10 +119,9 @@ export const myProjects = [
     spotlight: '/assets/spotlight2.png',
     tags: [
       { id: 1, name: 'Python', path: '' },
-      { id: 2, name: 'Google Gemini', path: '' },
-      { id: 3, name: 'FastAPI', path: '' },
-      { id: 4, name: 'CLIP', path: '' },
-      { id: 5, name: 'OpenCV', path: '' },
+      { id: 2, name: 'FastAPI', path: '' },
+      { id: 3, name: 'LLM', path: '' },
+      { id: 4, name: 'OpenCV', path: '' },
     ],
   },
   {
