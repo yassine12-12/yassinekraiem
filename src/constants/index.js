@@ -196,10 +196,7 @@ export const myProjects = [
   },
   {
     title: 'Automotive Manufacturing Data Analytics',
-    images: [
-      '/assets/projects/automotive-analytics-1.jpg',
-      '/assets/projects/automotive-analytics-2.jpg',
-    ],
+    image: '/assets/projects/automotive-analytics.jpg',
     imagePosition: 'top',
     desc: 'Cleaned and merged multi-source production data; applied ML to predict delays and find bottlenecks. Built interactive dashboards with pandas, Plotly, and Dash for analysis and reporting.',
     subdesc: 'Demonstrated expertise in data engineering and visualization for industrial applications.',
