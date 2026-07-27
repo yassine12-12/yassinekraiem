@@ -189,6 +189,7 @@ export const myProjects = [
   {
     title: 'Automotive Manufacturing Data Analytics',
     image: '/assets/projects/automotive-analytics.png',
+    imagePosition: 'top',
     desc: 'Cleaned and merged multi-source production data; applied ML to predict delays and find bottlenecks. Built interactive dashboards with pandas, Plotly, and Dash for analysis and reporting.',
     subdesc: 'Demonstrated expertise in data engineering and visualization for industrial applications.',
     href: 'https://github.com/yassine12-12/Automotive-Production-Lead-Time-Analysis',
@@ -352,6 +353,7 @@ export const myProjects = [
   {
     title: 'Claudroom — macOS Menu Bar App',
     image: '/assets/projects/claudroom.png',
+    imagePosition: 'top',
     desc: 'Native macOS menu-bar app (Swift/SwiftUI) that tracks Claude Max subscription capacity in real time — remaining quota, per-model usage breakdown, and plan-fit advice.',
     subdesc: 'Personal product built end-to-end in Swift, from data collection to a packaged, tested macOS app.',
     href: 'https://github.com/yassine12-12/claudroom',
