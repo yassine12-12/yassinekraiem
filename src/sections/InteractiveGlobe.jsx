@@ -138,7 +138,7 @@ const InteractiveGlobe = () => {
                     {location.type === 'current' && (
                       <div className="mt-2">
                         <p>🎓 Currently pursuing M.Sc. in Computational Engineering Science</p>
-                        <p>💼 Working at Innomotics (Siemens) as AI/Data Science Engineer</p>
+                        <p>💼 Working at Innomotics GmbH as AI/Data Science Engineer</p>
                         <p>🏢 Available for local networking and collaboration</p>
                       </div>
                     )}

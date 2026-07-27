@@ -89,9 +89,20 @@ const WorkExperience = () => {
                   </div>
                 </div>
                 
-                <p className="text-gray-300 leading-relaxed text-lg">
-                  {item.title}
-                </p>
+                {item.bullets ? (
+                  <ul className="space-y-2">
+                    {item.bullets.map((bullet, bulletIndex) => (
+                      <li key={bulletIndex} className="flex items-start gap-3 text-gray-300 leading-relaxed text-lg">
+                        <span className="mt-3 w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-300 leading-relaxed text-lg">
+                    {item.title}
+                  </p>
+                )}
 
                 {/* Skills/Technologies used - if available */}
                 {item.technologies && (
