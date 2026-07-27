@@ -134,7 +134,7 @@ export const myProjects = [
   },
   {
     title: 'AI-Based Cycle Time Monitoring – Human-Robot Collaboration',
-    image: '/assets/projects/cycle-time-monitoring.jpg',
+    image: '/assets/projects/cycle-time-monitoring.gif',
     desc: 'Automated assembly cycle-time measurement using YOLOv8, MediaPipe, and OpenCV to detect assembly steps. Collected data and developed a vision pipeline, including training and optimizing YOLOv8 models.',
     subdesc: 'Advanced computer vision techniques applied to industrial automation.',
     href: 'https://github.com/yassine12-12/AI-Based-Cycle-Time-Monitoring-for-Human-Assembly-Processes-in-Human-Robot-Collaboration',
