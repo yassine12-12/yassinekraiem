@@ -6,9 +6,8 @@ import {
   KubernetesArt,
   NeuralNetArt,
   DecisionBoundaryArt,
-  PortfolioArt,
-  LandmarkArt,
   MarketplaceArt,
+  ClaudroomArt,
 } from "../components/ProjectArt";
 
 export const navLinks = [
@@ -314,7 +313,7 @@ export const myProjects = [
   },
   {
     title: 'Personal Portfolio Website',
-    art: PortfolioArt,
+    image: '/assets/projects/portfolio-website.jpg',
     desc: 'Designed and developed a responsive personal website to showcase projects and skills. Implemented modern UI with React, Three.js, and Tailwind CSS.',
     subdesc: 'Modern web development project with 3D graphics and responsive design.',
     href: 'https://github.com/yassine12-12/yassinekraiem',
@@ -366,8 +365,7 @@ export const myProjects = [
   },
   {
     title: 'Claudroom — macOS Menu Bar App',
-    image: '/assets/projects/claudroom.png',
-    imagePosition: 'top',
+    art: ClaudroomArt,
     desc: 'Native macOS menu-bar app (Swift/SwiftUI) that tracks Claude Max subscription capacity in real time — remaining quota, per-model usage breakdown, and plan-fit advice.',
     subdesc: 'Personal product built end-to-end in Swift, from data collection to a packaged, tested macOS app.',
     href: 'https://github.com/yassine12-12/claudroom',
@@ -422,36 +420,10 @@ export const myProjects = [
     ],
   },
   {
-    title: 'Munich Tech Arena 2026 — 3D Ear Landmark Extraction',
-    art: LandmarkArt,
-    desc: 'Competition pipeline (Huawei challenge) extracting 85 ordered 3D landmarks per ear from raw 3D head meshes, scored on mean Euclidean distance.',
-    subdesc: 'Non-rigid template registration pipeline built for a live hackathon-style competition.',
-    category: 'computer-science',
-    technologies: ['Python', 'Open3D', 'trimesh', 'NumPy', 'SciPy'],
-    features: [
-      'Non-rigid ICP template transfer (nricp_amberg) using trimesh and rtree for correspondence search',
-      'Open3D ICP pre-alignment before fine registration',
-      'Graceful degradation when optional dependencies are unavailable',
-    ],
-    texture: '',
-    logo: '',
-    logoStyle: {
-      backgroundColor: '#334155',
-      border: '0.2px solid #64748B',
-      boxShadow: '0px 0px 60px 0px #3345584D',
-    },
-    spotlight: '/assets/spotlight2.png',
-    tags: [
-      { id: 1, name: '3D Vision', path: '' },
-      { id: 2, name: 'Open3D', path: '' },
-      { id: 3, name: 'Python', path: '' },
-    ],
-  },
-  {
     title: 'Sooqy.tn — Classified Ads Marketplace',
     art: MarketplaceArt,
     desc: 'Full-stack MERN classified-ads marketplace built for the Tunisian market, trilingual (French/Arabic/English) and covering all 24 governorates.',
-    subdesc: 'Solo-built product: 43 commits end-to-end, from auth to production deployment.',
+    subdesc: 'Solo-built end-to-end, from auth to production deployment.',
     category: 'computer-science',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
     features: [

@@ -150,55 +150,6 @@ export const DecisionBoundaryArt = ({ className }) => {
   );
 };
 
-// Personal Portfolio Website: browser chrome around this site's own hero layout
-export const PortfolioArt = ({ className }) => (
-  <Frame className={className}>
-    <rect x="40" y="24" width="720" height="176" rx="10" fill="none" stroke="#e5e7eb" strokeOpacity="0.25" />
-    <line x1="40" y1="56" x2="760" y2="56" stroke="#e5e7eb" strokeOpacity="0.25" />
-    <circle cx="60" cy="40" r="4" fill="#e5e7eb" fillOpacity="0.3" />
-    <circle cx="76" cy="40" r="4" fill="#e5e7eb" fillOpacity="0.3" />
-    <circle cx="92" cy="40" r="4" fill="#e5e7eb" fillOpacity="0.3" />
-    <rect x="130" y="34" width="200" height="12" rx="6" fill="#e5e7eb" fillOpacity="0.15" />
-    <rect x="70" y="86" width="160" height="16" rx="3" fill="#e5e7eb" fillOpacity="0.7" />
-    <rect x="70" y="112" width="220" height="10" rx="3" fill="#e5e7eb" fillOpacity="0.3" />
-    <rect x="70" y="144" width="90" height="24" rx="6" fill="#22d3ee" fillOpacity="0.85" />
-    <rect x="172" y="144" width="90" height="24" rx="6" fill="none" stroke="#e5e7eb" strokeOpacity="0.4" />
-    <circle cx="640" cy="128" r="46" fill="none" stroke="#e5e7eb" strokeOpacity="0.2" strokeDasharray="3 5" />
-    <circle cx="640" cy="128" r="34" fill="#22d3ee" fillOpacity="0.12" stroke="#22d3ee" strokeOpacity="0.5" />
-  </Frame>
-);
-
-// Munich Tech Arena 2026 - 3D Ear Landmark Extraction: point-cloud mesh + landmarks
-export const LandmarkArt = ({ className }) => {
-  const pts = [];
-  for (let i = 0; i < 7; i++) {
-    for (let j = 0; j < 5; j++) {
-      const x = 260 + i * 50 + (j % 2 ? 20 : 0) + Math.sin(j) * 6;
-      const y = 40 + j * 36 + Math.cos(i) * 8;
-      pts.push([x, y]);
-    }
-  }
-  const landmarks = [pts[8], pts[15], pts[22], pts[16], pts[9], pts[23]];
-  return (
-    <Frame className={className}>
-      <g stroke="#e5e7eb" strokeOpacity="0.15" strokeWidth="1">
-        {pts.map(([x, y], i) =>
-          i % 5 !== 4 ? <line key={`h${i}`} x1={x} y1={y} x2={pts[i + 1][0]} y2={pts[i + 1][1]} /> : null
-        )}
-        {pts.map(([x, y], i) =>
-          i < 30 ? <line key={`v${i}`} x1={x} y1={y} x2={pts[i + 5][0]} y2={pts[i + 5][1]} /> : null
-        )}
-      </g>
-      {pts.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r="1.6" fill="#e5e7eb" fillOpacity="0.35" />
-      ))}
-      {landmarks.map(([x, y], i) => (
-        <circle key={`l${i}`} cx={x} cy={y} r="5" fill="#fb923c" stroke="#0b0d10" strokeWidth="1.5" />
-      ))}
-    </Frame>
-  );
-};
-
 // Sooqy.tn: classified-ad listing grid
 export const MarketplaceArt = ({ className }) => {
   const cards = [0, 1, 2, 3, 4, 5];
@@ -236,6 +187,33 @@ export const MarketplaceArt = ({ className }) => {
           </g>
         );
       })}
+    </Frame>
+  );
+};
+
+// Claudroom: menu-bar capacity meter + per-model usage bars
+export const ClaudroomArt = ({ className }) => {
+  const bars = [0.85, 0.4, 0.62, 0.28, 0.5, 0.72, 0.18, 0.46, 0.6, 0.33];
+  const barGap = 700 / bars.length;
+  return (
+    <Frame className={className}>
+      <rect x="330" y="24" width="140" height="26" rx="13" fill="none" stroke="#e5e7eb" strokeOpacity="0.35" />
+      <circle cx="352" cy="37" r="6" fill="#22d3ee" fillOpacity="0.8" />
+      <rect x="368" y="33" width="86" height="8" rx="4" fill="#e5e7eb" fillOpacity="0.25" />
+      <text x="400" y="90" textAnchor="middle" fontSize="13" fill="#e5e7eb" fillOpacity="0.5" fontFamily="monospace">
+        43% used this week
+      </text>
+      <rect x="150" y="104" width="500" height="10" rx="5" fill="#e5e7eb" fillOpacity="0.1" />
+      <rect x="150" y="104" width="215" height="10" rx="5" fill="#fb923c" fillOpacity="0.85" />
+      <g>
+        {bars.map((v, i) => {
+          const w = barGap * 0.55;
+          const h = v * 70;
+          const x = 60 + i * barGap;
+          const y = 200 - h;
+          return <rect key={i} x={x} y={y} width={w} height={h} rx="3" fill="#22d3ee" fillOpacity={0.3 + v * 0.5} />;
+        })}
+      </g>
     </Frame>
   );
 };
