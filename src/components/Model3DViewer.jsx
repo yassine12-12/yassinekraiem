@@ -6,7 +6,6 @@ import { useWebGLSupport } from '../hooks/useWebGLSupport';
 
 const ViewerFallback = () => (
   <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-6">
-    <span className="text-4xl">🔧</span>
     <p className="text-white font-medium">3D viewing isn&apos;t supported in this browser</p>
     <p className="text-gray-400 text-sm max-w-sm">
       Your browser or device doesn&apos;t support WebGL, which this 3D viewer needs. Try a different
@@ -17,16 +16,16 @@ const ViewerFallback = () => (
 
 const ViewerLoading = () => (
   <div className="flex flex-col items-center gap-3 pointer-events-none whitespace-nowrap">
-    <span className="text-3xl animate-pulse">⚙️</span>
+    <span className="w-6 h-6 rounded-full border-2 border-orange-400/30 border-t-orange-400 animate-spin" />
     <p className="text-orange-300/80 text-xs tracking-[0.2em] uppercase">Loading model</p>
   </div>
 );
 
 const CONTROLS = [
-  { icon: '🖱️', label: 'Rotate', hint: 'Left click + drag' },
-  { icon: '🔍', label: 'Zoom', hint: 'Scroll' },
-  { icon: '⚡', label: 'Pan', hint: 'Right click + drag' },
-  { icon: '❌', label: 'Close', hint: 'Esc' },
+  { label: 'Rotate', hint: 'Left click + drag' },
+  { label: 'Zoom', hint: 'Scroll' },
+  { label: 'Pan', hint: 'Right click + drag' },
+  { label: 'Close', hint: 'Esc' },
 ];
 
 const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
@@ -127,7 +126,6 @@ const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
                 key={c.label}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs bg-orange-500/10 border border-orange-400/20 text-orange-200/90"
               >
-                <span aria-hidden>{c.icon}</span>
                 <strong className="font-semibold text-orange-200">{c.label}</strong>
                 <span className="text-orange-200/60">· {c.hint}</span>
               </span>

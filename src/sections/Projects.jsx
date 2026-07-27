@@ -10,7 +10,6 @@ import { useWebGLSupport } from '../hooks/useWebGLSupport';
 
 const Model3DFallback = () => (
   <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
-    <span className="text-3xl">🔧</span>
     <p className="text-orange-300 text-sm font-medium">3D preview unavailable in this browser</p>
     <p className="text-gray-400 text-xs">See the project details and documentation below</p>
   </div>
