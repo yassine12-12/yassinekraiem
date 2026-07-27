@@ -7,7 +7,6 @@ import {
   NeuralNetArt,
   DecisionBoundaryArt,
   MarketplaceArt,
-  ClaudroomArt,
 } from "../components/ProjectArt";
 
 export const navLinks = [
@@ -365,7 +364,8 @@ export const myProjects = [
   },
   {
     title: 'Claudroom — macOS Menu Bar App',
-    art: ClaudroomArt,
+    image: '/assets/projects/claudroom-icon.png',
+    imageFit: 'contain',
     desc: 'Native macOS menu-bar app (Swift/SwiftUI) that tracks Claude Max subscription capacity in real time — remaining quota, per-model usage breakdown, and plan-fit advice.',
     subdesc: 'Personal product built end-to-end in Swift, from data collection to a packaged, tested macOS app.',
     href: 'https://github.com/yassine12-12/claudroom',

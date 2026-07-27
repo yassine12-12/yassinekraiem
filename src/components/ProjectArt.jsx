@@ -190,30 +190,3 @@ export const MarketplaceArt = ({ className }) => {
     </Frame>
   );
 };
-
-// Claudroom: menu-bar capacity meter + per-model usage bars
-export const ClaudroomArt = ({ className }) => {
-  const bars = [0.85, 0.4, 0.62, 0.28, 0.5, 0.72, 0.18, 0.46, 0.6, 0.33];
-  const barGap = 700 / bars.length;
-  return (
-    <Frame className={className}>
-      <rect x="330" y="24" width="140" height="26" rx="13" fill="none" stroke="#e5e7eb" strokeOpacity="0.35" />
-      <circle cx="352" cy="37" r="6" fill="#22d3ee" fillOpacity="0.8" />
-      <rect x="368" y="33" width="86" height="8" rx="4" fill="#e5e7eb" fillOpacity="0.25" />
-      <text x="400" y="90" textAnchor="middle" fontSize="13" fill="#e5e7eb" fillOpacity="0.5" fontFamily="monospace">
-        43% used this week
-      </text>
-      <rect x="150" y="104" width="500" height="10" rx="5" fill="#e5e7eb" fillOpacity="0.1" />
-      <rect x="150" y="104" width="215" height="10" rx="5" fill="#fb923c" fillOpacity="0.85" />
-      <g>
-        {bars.map((v, i) => {
-          const w = barGap * 0.55;
-          const h = v * 70;
-          const x = 60 + i * barGap;
-          const y = 200 - h;
-          return <rect key={i} x={x} y={y} width={w} height={h} rx="3" fill="#22d3ee" fillOpacity={0.3 + v * 0.5} />;
-        })}
-      </g>
-    </Frame>
-  );
-};

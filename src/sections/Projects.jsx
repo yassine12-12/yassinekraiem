@@ -220,7 +220,7 @@ const Projects = () => {
               )}
 
               {/* Project Header - Screenshot/GIF for CS Projects */}
-              {!project.model && project.image && (
+              {!project.model && project.image && project.imageFit !== 'contain' && (
                 <div className="relative h-56 w-full overflow-hidden">
                   <img
                     src={project.image}
@@ -231,6 +231,23 @@ const Projects = () => {
                     }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/10" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
+                      AI & Data Science
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Project Header - Showcased logo/icon (no cropping) for CS Projects */}
+              {!project.model && project.image && project.imageFit === 'contain' && (
+                <div className="relative h-56 w-full overflow-hidden bg-black/20 flex items-center justify-center p-10">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} logo`}
+                    loading="lazy"
+                    className="max-h-full max-w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-105"
+                  />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
                       AI & Data Science
