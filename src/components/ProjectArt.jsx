@@ -21,48 +21,35 @@ const Frame = ({ children, className }) => (
   </svg>
 );
 
-// AI-Based CNC Monitoring Platform: a row of sensor gauges, one flagging an anomaly
+// AI-Based CNC Monitoring Platform: machine grid, flagged nodes signal predicted failures
 export const CNCMonitoringArt = ({ className }) => {
-  const polar = (cx, cy, r, deg) => {
-    const rad = (deg * Math.PI) / 180;
-    return [cx + r * Math.sin(rad), cy - r * Math.cos(rad)];
-  };
-  const ticks = [-120, -90, -60, -30, 0, 30, 60, 90, 120];
-  const gauges = [
-    { cx: 140, angle: -55, alert: false },
-    { cx: 340, angle: 20, alert: false },
-    { cx: 540, angle: 75, alert: true },
-    { cx: 700, angle: -35, alert: false },
-  ];
-  const r = 40;
-  const cy = 108;
-
+  const hexCenters = [];
+  const r = 34;
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 8; col++) {
+      const x = 40 + col * (r * 1.75) + (row % 2 ? r * 0.875 : 0);
+      const y = 20 + row * (r * 1.5);
+      hexCenters.push([x, y]);
+    }
+  }
+  const flagged = new Set([6, 13, 19]);
+  const hexPath = (cx, cy) =>
+    Array.from({ length: 6 }, (_, i) => {
+      const a = (Math.PI / 3) * i - Math.PI / 6;
+      return `${cx + r * 0.55 * Math.cos(a)},${cy + r * 0.55 * Math.sin(a)}`;
+    }).join(' ');
   return (
     <Frame className={className}>
-      <line x1="90" y1="180" x2="750" y2="180" stroke="#e5e7eb" strokeOpacity="0.15" strokeWidth="1" strokeDasharray="2 5" />
-      {gauges.map(({ cx, angle, alert }, i) => {
-        const color = alert ? '#ef4444' : '#22d3ee';
-        const [nx, ny] = polar(cx, cy, r - 10, angle);
-        const [zx1, zy1] = polar(cx, cy, r, 60);
-        const [zx2, zy2] = polar(cx, cy, r, 120);
-        return (
-          <g key={i}>
-            <circle cx={cx} cy={cy} r={r} fill="none" stroke="#e5e7eb" strokeOpacity="0.25" strokeWidth="1.5" />
-            {ticks.map((t) => {
-              const [x1, y1] = polar(cx, cy, r - 8, t);
-              const [x2, y2] = polar(cx, cy, r, t);
-              return <line key={t} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e5e7eb" strokeOpacity="0.25" strokeWidth="1.5" />;
-            })}
-            {alert && (
-              <path d={`M${zx1},${zy1} A${r},${r} 0 0,1 ${zx2},${zy2}`} fill="none" stroke={color} strokeOpacity="0.8" strokeWidth="4" />
-            )}
-            <line x1={cx} y1={cy} x2={nx} y2={ny} stroke={color} strokeOpacity="0.9" strokeWidth="2" />
-            <circle cx={cx} cy={cy} r="4" fill={color} fillOpacity="0.85" />
-          </g>
-        );
-      })}
-      <circle cx="540" cy="46" r="3" fill="#ef4444" fillOpacity="0.9" />
-      <text x="552" y="50" fontSize="11" fill="#ef4444" fillOpacity="0.85" fontFamily="monospace">anomaly detected</text>
+      {hexCenters.map(([cx, cy], i) => (
+        <polygon
+          key={i}
+          points={hexPath(cx, cy)}
+          fill={flagged.has(i) ? 'rgba(251,146,60,0.18)' : 'none'}
+          stroke={flagged.has(i) ? '#fb923c' : '#22d3ee'}
+          strokeOpacity={flagged.has(i) ? 0.9 : 0.18}
+          strokeWidth={flagged.has(i) ? 1.5 : 1}
+        />
+      ))}
     </Frame>
   );
 };
