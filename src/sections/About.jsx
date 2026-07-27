@@ -28,7 +28,7 @@ const About = () => {
   const skills = [
     "Generative AI", "Agentic AI", "MCP", "RAG",
     "Computer Vision", "YOLOv8", "PyTorch",
-    "Kubernetes", "Python", "FastAPI", "Mechanical Engineering",
+    "Kubernetes", "Python", "FastAPI", "Industrial AI",
   ];
 
   return (

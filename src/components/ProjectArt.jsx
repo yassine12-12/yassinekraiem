@@ -21,74 +21,48 @@ const Frame = ({ children, className }) => (
   </svg>
 );
 
-// AI-Based CNC Monitoring Platform: machine -> streaming pipeline -> predictive-maintenance forecast
+// AI-Based CNC Monitoring Platform: a row of sensor gauges, one flagging an anomaly
 export const CNCMonitoringArt = ({ className }) => {
-  const dots = [];
-  for (let row = 0; row < 5; row++) {
-    for (let col = 0; col < 16; col++) {
-      dots.push([25 + col * 50, 20 + row * 46]);
-    }
-  }
-  const hexPoints = (cx, cy, r) =>
-    Array.from({ length: 6 }, (_, i) => {
-      const a = (Math.PI / 3) * i - Math.PI / 6;
-      return `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
-    }).join(' ');
+  const polar = (cx, cy, r, deg) => {
+    const rad = (deg * Math.PI) / 180;
+    return [cx + r * Math.sin(rad), cy - r * Math.cos(rad)];
+  };
+  const ticks = [-120, -90, -60, -30, 0, 30, 60, 90, 120];
+  const gauges = [
+    { cx: 140, angle: -55, alert: false },
+    { cx: 340, angle: 20, alert: false },
+    { cx: 540, angle: 75, alert: true },
+    { cx: 700, angle: -35, alert: false },
+  ];
+  const r = 40;
+  const cy = 108;
 
   return (
     <Frame className={className}>
-      <g fill="#e5e7eb" fillOpacity="0.06">
-        {dots.map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="1.2" />
-        ))}
-      </g>
-
-      {/* CNC machine: spindle + bed with toolpath */}
-      <rect x="50" y="130" width="170" height="64" rx="6" fill="none" stroke="#e5e7eb" strokeOpacity="0.3" strokeWidth="1.5" />
-      <rect x="120" y="40" width="30" height="30" rx="4" fill="none" stroke="#fb923c" strokeOpacity="0.85" strokeWidth="2" />
-      <line x1="135" y1="70" x2="135" y2="130" stroke="#fb923c" strokeOpacity="0.6" strokeWidth="2" />
-      <polyline
-        points="70,150 70,180 100,180 100,150 130,150 130,180 160,180 160,150 190,150 190,180"
-        fill="none"
-        stroke="#22d3ee"
-        strokeOpacity="0.85"
-        strokeWidth="2"
-      />
-      <circle cx="140" cy="118" r="1.5" fill="#fb923c" fillOpacity="0.8" />
-      <circle cx="129" cy="112" r="1.5" fill="#fb923c" fillOpacity="0.6" />
-      <circle cx="146" cy="105" r="1.5" fill="#fb923c" fillOpacity="0.4" />
-
-      {/* Streaming pipeline: sensor -> Kafka -> LSTM model */}
-      <circle cx="300" cy="112" r="14" fill="none" stroke="#22d3ee" strokeWidth="2" strokeOpacity="0.85" />
-      <circle cx="300" cy="112" r="4" fill="#22d3ee" fillOpacity="0.6" />
-      <line x1="316" y1="112" x2="364" y2="112" stroke="#e5e7eb" strokeOpacity="0.3" strokeWidth="1.5" strokeDasharray="4 4" />
-      <polygon points={hexPoints(392, 112, 24)} fill="rgba(251,146,60,0.08)" stroke="#fb923c" strokeWidth="2" strokeOpacity="0.85" />
-      <line x1="418" y1="112" x2="466" y2="112" stroke="#e5e7eb" strokeOpacity="0.3" strokeWidth="1.5" strokeDasharray="4 4" />
-      <rect x="470" y="94" width="36" height="36" rx="5" fill="none" stroke="#22d3ee" strokeOpacity="0.85" strokeWidth="2" />
-      <polyline points="478,118 486,104 494,116 502,106" fill="none" stroke="#22d3ee" strokeOpacity="0.85" strokeWidth="1.5" />
-
-      {/* Predictive forecast: historical telemetry -> forecast crossing failure threshold */}
-      <polyline
-        points="560,140 585,132 610,148 635,128 660,140"
-        fill="none"
-        stroke="#e5e7eb"
-        strokeOpacity="0.5"
-        strokeWidth="2"
-      />
-      <line x1="660" y1="40" x2="660" y2="190" stroke="#e5e7eb" strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="3 4" />
-      <line x1="660" y1="70" x2="780" y2="70" stroke="#ef4444" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="2 4" />
-      <polyline
-        points="660,140 690,120 720,90 745,72"
-        fill="none"
-        stroke="#fb923c"
-        strokeWidth="2"
-        strokeOpacity="0.9"
-        strokeDasharray="5 4"
-      />
-      <path d="M745,42 L763,74 L727,74 Z" fill="none" stroke="#ef4444" strokeWidth="1.5" strokeOpacity="0.9" />
-      <line x1="745" y1="53" x2="745" y2="63" stroke="#ef4444" strokeWidth="1.5" strokeOpacity="0.9" />
-      <circle cx="745" cy="68" r="1.3" fill="#ef4444" fillOpacity="0.9" />
-      <text x="700" y="200" fontSize="11" fill="#ef4444" fillOpacity="0.85" fontFamily="monospace">24h forecast</text>
+      <line x1="90" y1="180" x2="750" y2="180" stroke="#e5e7eb" strokeOpacity="0.15" strokeWidth="1" strokeDasharray="2 5" />
+      {gauges.map(({ cx, angle, alert }, i) => {
+        const color = alert ? '#ef4444' : '#22d3ee';
+        const [nx, ny] = polar(cx, cy, r - 10, angle);
+        const [zx1, zy1] = polar(cx, cy, r, 60);
+        const [zx2, zy2] = polar(cx, cy, r, 120);
+        return (
+          <g key={i}>
+            <circle cx={cx} cy={cy} r={r} fill="none" stroke="#e5e7eb" strokeOpacity="0.25" strokeWidth="1.5" />
+            {ticks.map((t) => {
+              const [x1, y1] = polar(cx, cy, r - 8, t);
+              const [x2, y2] = polar(cx, cy, r, t);
+              return <line key={t} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e5e7eb" strokeOpacity="0.25" strokeWidth="1.5" />;
+            })}
+            {alert && (
+              <path d={`M${zx1},${zy1} A${r},${r} 0 0,1 ${zx2},${zy2}`} fill="none" stroke={color} strokeOpacity="0.8" strokeWidth="4" />
+            )}
+            <line x1={cx} y1={cy} x2={nx} y2={ny} stroke={color} strokeOpacity="0.9" strokeWidth="2" />
+            <circle cx={cx} cy={cy} r="4" fill={color} fillOpacity="0.85" />
+          </g>
+        );
+      })}
+      <circle cx="540" cy="46" r="3" fill="#ef4444" fillOpacity="0.9" />
+      <text x="552" y="50" fontSize="11" fill="#ef4444" fillOpacity="0.85" fontFamily="monospace">anomaly detected</text>
     </Frame>
   );
 };
