@@ -405,6 +405,33 @@ export const myProjects = [
     ],
   },
   {
+    title: 'Trace — Research Workspace with Verified Citations',
+    image: '/assets/projects/trace.gif',
+    desc: 'Research workspace that turns every citation into a clickable, auditable object: click a claim, land on the exact quote-verified passage in the source that supports it.',
+    subdesc: 'Desktop + web app (Tauri) with live LaTeX compilation and a local Claude-powered audit pipeline.',
+    category: 'computer-science',
+    technologies: ['React', 'TypeScript', 'Tauri', 'Vite', 'Claude API', 'LaTeX', 'Firebase'],
+    features: [
+      'Every citation links to the exact highlighted passage in its source PDF, with a supported/weak/unsupported verdict',
+      'Quote-verified claim audits with specific flags (overclaim, scope mismatch, number mismatch, hedge dropped)',
+      'Autonomous Deep Research: decomposes a question, grades sources A–E, cross-verifies claims into a confirmed/documented/possible/theoretical matrix',
+      'Knowledge graph, grounded Copilot that cannot invent a citation, mind maps, and one-click evidence-pack export',
+    ],
+    texture: '',
+    logo: '',
+    logoStyle: {
+      backgroundColor: '#1E3A5F',
+      border: '0.2px solid #3B82F6',
+      boxShadow: '0px 0px 60px 0px #1E3A5F4D',
+    },
+    spotlight: '/assets/spotlight2.png',
+    tags: [
+      { id: 1, name: 'React', path: '' },
+      { id: 2, name: 'TypeScript', path: '' },
+      { id: 3, name: 'Claude API', path: '' },
+    ],
+  },
+  {
     title: 'Sooqy.tn — Classified Ads Marketplace',
     art: MarketplaceArt,
     desc: 'Full-stack MERN classified-ads marketplace built for the Tunisian market, trilingual (French/Arabic/English) and covering all 24 governorates.',
