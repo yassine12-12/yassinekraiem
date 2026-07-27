@@ -1,19 +1,10 @@
-import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import Button from '../components/Button.jsx';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Use media queries to determine screen size
-  const isSmall = useMediaQuery({ maxWidth: 440 });
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
 
   useEffect(() => {
-    setIsLoaded(true);
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -26,64 +17,25 @@ const Hero = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
     },
   };
 
-  const titleVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.8 },
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { 
-        duration: 1.2, 
-        ease: [0.25, 0.46, 0.45, 0.94],
-        type: "spring",
-        stiffness: 100
-      },
+      transition: { duration: 0.7, ease: 'easeOut' },
     },
-  };
-
-  const subtitleVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, delay: 0.5, ease: 'easeOut' },
-    },
-  };
-
-  const taglineVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, delay: 0.8, ease: 'easeOut' },
-    },
-  };
-
-  const floatingVariants = {
-    float: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
   };
 
   const glowVariants = {
     pulse: {
       scale: [1, 1.05, 1],
-      opacity: [0.5, 0.8, 0.5],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+      opacity: [0.4, 0.7, 0.4],
+      transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+    },
   };
 
   return (
@@ -94,97 +46,85 @@ const Hero = () => {
       animate="visible"
       variants={containerVariants}
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Orbs */}
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-40 right-20 w-24 h-24 bg-white/5 rounded-full blur-xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 0.8, 1],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-1/4 w-20 h-20 bg-white/5 rounded-full blur-xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-20"
+      {/* Background: engineering blueprint grid + ambient glows */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.15]"
           style={{
-            backgroundImage: `radial-gradient(circle at ${mousePosition.x * 0.1}px ${mousePosition.y * 0.1}px, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
+            backgroundImage:
+              'linear-gradient(rgba(34,211,238,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.5) 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+            transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
           }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(34,211,238,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.5) 1px, transparent 1px)',
+            backgroundSize: '16px 16px',
+          }}
+        />
+        <motion.div
+          className="absolute top-24 left-[8%] w-72 h-72 bg-cyan-500/10 rounded-full blur-[100px]"
+          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-24 right-[10%] w-80 h-80 bg-orange-500/5 rounded-full blur-[100px]"
+          animate={{ x: [0, -30, 0], y: [0, 30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
         />
       </div>
 
-      <motion.div
-        className="relative z-10 w-full mx-auto flex flex-col justify-center items-center min-h-screen c-space gap-8"
-        variants={titleVariants}
-      >
-        {/* Two-column layout: text left, photo right */}
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-6xl">
-
+      <div className="relative z-10 w-full mx-auto flex flex-col justify-center items-center min-h-screen c-space gap-8">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-14 lg:gap-20 w-full max-w-6xl">
           {/* Left: Text content */}
           <div className="flex flex-col items-center lg:items-start gap-6 text-center lg:text-left flex-1">
-            {/* Main Title */}
-            <motion.div className="relative" variants={titleVariants}>
+            {/* Eyebrow: the actual career throughline */}
+            <motion.div
+              variants={fadeUp}
+              className="flex items-center gap-2 text-xs sm:text-sm font-mono tracking-[0.15em] text-cyan-300/90 uppercase"
+            >
+              <span>Mechanical Engineer</span>
+              <span className="text-white/30">&rarr;</span>
+              <span>AI / Data Science Engineer</span>
+            </motion.div>
+
+            {/* Name + thesis */}
+            <motion.div variants={fadeUp} className="relative">
               <motion.div
-                className="absolute inset-0 bg-white/10 blur-2xl opacity-30"
+                className="absolute -inset-x-4 -inset-y-2 bg-cyan-500/10 blur-2xl"
                 variants={glowVariants}
                 animate="pulse"
               />
-              <motion.h1
-                className="relative text-6xl md:text-8xl lg:text-9xl font-black text-white font-generalsans leading-none"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                YASSINE
-              </motion.h1>
+              <h1 className="relative text-5xl md:text-7xl font-black text-white font-generalsans leading-[1.05]">
+                Yassine Kraiem
+              </h1>
             </motion.div>
 
-            {/* Subtitle */}
-            <motion.div className="space-y-3" variants={subtitleVariants}>
-              <motion.h2
-                className="text-2xl md:text-4xl font-bold text-white font-generalsans"
-                variants={floatingVariants}
-                animate="float"
-              >
-                AI/Data Science Engineer
-              </motion.h2>
-              <motion.p
-                className="text-lg md:text-xl text-gray-300 max-w-xl leading-relaxed"
-                variants={taglineVariants}
-              >
-                Building intelligent solutions with cutting-edge technology and innovative design
-              </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="text-xl md:text-2xl text-white/80 font-generalsans font-semibold max-w-xl leading-snug"
+            >
+              I build AI systems for the physical world &mdash; computer vision and
+              automation for factories, not just demos.
+            </motion.p>
+
+            {/* Current role chip */}
+            <motion.div
+              variants={fadeUp}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              </span>
+              AI/Data Science Engineer at Innomotics (Siemens) &middot; Berlin
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 mt-2"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-            >
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 mt-2">
               <motion.button
                 className="px-8 py-4 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300 shadow-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -194,7 +134,7 @@ const Hero = () => {
                 View My Work
               </motion.button>
               <motion.button
-                className="px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-black transition-all duration-300"
+                className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl hover:border-white hover:bg-white/5 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -204,35 +144,46 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right: Profile photo */}
+          {/* Right: Profile photo, framed like a CV detection box */}
           <motion.div
             className="relative flex-shrink-0"
-            initial={{ opacity: 0, scale: 0.8, x: 60 }}
+            initial={{ opacity: 0, scale: 0.85, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            {/* Outer glow ring */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-white/10 blur-2xl"
+              className="absolute -inset-6 bg-cyan-500/10 blur-3xl rounded-full"
               variants={glowVariants}
               animate="pulse"
             />
-            {/* Rotating dashed border */}
-            <motion.div
-              className="absolute -inset-3 rounded-full border-2 border-dashed border-white/20"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            />
-            {/* Photo */}
-            <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-              <img
-                src="/assets/yassine.jpg"
-                alt="Yassine Kraiem"
-                className="w-full h-full object-cover object-top"
-              />
+
+            <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
+              {/* Detection-box corner brackets */}
+              {[
+                'top-0 left-0 border-t-2 border-l-2 rounded-tl-xl',
+                'top-0 right-0 border-t-2 border-r-2 rounded-tr-xl',
+                'bottom-0 left-0 border-b-2 border-l-2 rounded-bl-xl',
+                'bottom-0 right-0 border-b-2 border-r-2 rounded-br-xl',
+              ].map((pos) => (
+                <div
+                  key={pos}
+                  className={`absolute w-8 h-8 md:w-10 md:h-10 border-cyan-400/70 ${pos}`}
+                />
+              ))}
+
+              <div className="absolute inset-3 rounded-full overflow-hidden border border-white/10 shadow-2xl">
+                <img
+                  src="/assets/yassine.jpg"
+                  alt="Yassine Kraiem"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-cyan-400/30 text-cyan-300 text-[11px] font-mono tracking-wide whitespace-nowrap">
+                yassine.kraiem
+              </div>
             </div>
           </motion.div>
-
         </div>
 
         {/* Scroll Indicator */}
@@ -240,7 +191,7 @@ const Hero = () => {
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 1.6 }}
         >
           <motion.div
             className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
@@ -254,7 +205,7 @@ const Hero = () => {
             />
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.section>
   );
 };
