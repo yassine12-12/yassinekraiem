@@ -21,37 +21,77 @@ const Frame = ({ children, className }) => (
   </svg>
 );
 
-// AI-Based CNC Monitoring Platform: oscilloscope trace + detection boxes
-export const CNCMonitoringArt = ({ className }) => (
-  <Frame className={className}>
-    <g stroke="#22d3ee" strokeOpacity="0.12" strokeWidth="1">
-      {Array.from({ length: 9 }, (_, i) => (
-        <line key={i} x1={i * 100} y1="0" x2={i * 100} y2="224" />
-      ))}
-    </g>
-    <polyline
-      points="0,150 60,150 80,70 100,190 120,150 180,150 200,100 220,150 260,150 280,40 300,150 340,150 360,120 380,150 420,150 440,80 460,150 520,150 540,160 560,150 600,150 620,60 640,150 700,150 720,110 740,150 800,150"
-      fill="none"
-      stroke="#22d3ee"
-      strokeWidth="2"
-      strokeOpacity="0.8"
-    />
-    {[
-      [70, 40, 40, 90],
-      [280, 20, 44, 90],
-      [610, 30, 40, 90],
-    ].map(([x, y, w, h], i) => (
-      <g key={i} stroke={i === 1 ? '#fb923c' : '#e5e7eb'} strokeOpacity={i === 1 ? 0.9 : 0.35} strokeWidth="2">
-        <path d={`M${x},${y + 14} V${y} H${x + 14}`} fill="none" />
-        <path d={`M${x + w - 14},${y} H${x + w} V${y + 14}`} fill="none" />
-        <path d={`M${x + w},${y + h - 14} V${y + h} H${x + w - 14}`} fill="none" />
-        <path d={`M${x + 14},${y + h} H${x} V${y + h - 14}`} fill="none" />
+// AI-Based CNC Monitoring Platform: machine -> streaming pipeline -> predictive-maintenance forecast
+export const CNCMonitoringArt = ({ className }) => {
+  const dots = [];
+  for (let row = 0; row < 5; row++) {
+    for (let col = 0; col < 16; col++) {
+      dots.push([25 + col * 50, 20 + row * 46]);
+    }
+  }
+  const hexPoints = (cx, cy, r) =>
+    Array.from({ length: 6 }, (_, i) => {
+      const a = (Math.PI / 3) * i - Math.PI / 6;
+      return `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
+    }).join(' ');
+
+  return (
+    <Frame className={className}>
+      <g fill="#e5e7eb" fillOpacity="0.06">
+        {dots.map(([x, y], i) => (
+          <circle key={i} cx={x} cy={y} r="1.2" />
+        ))}
       </g>
-    ))}
-    <circle cx="302" cy="30" r="3" fill="#fb923c" />
-    <text x="314" y="34" fontSize="11" fill="#fb923c" fontFamily="monospace">0.94</text>
-  </Frame>
-);
+
+      {/* CNC machine: spindle + bed with toolpath */}
+      <rect x="50" y="130" width="170" height="64" rx="6" fill="none" stroke="#e5e7eb" strokeOpacity="0.3" strokeWidth="1.5" />
+      <rect x="120" y="40" width="30" height="30" rx="4" fill="none" stroke="#fb923c" strokeOpacity="0.85" strokeWidth="2" />
+      <line x1="135" y1="70" x2="135" y2="130" stroke="#fb923c" strokeOpacity="0.6" strokeWidth="2" />
+      <polyline
+        points="70,150 70,180 100,180 100,150 130,150 130,180 160,180 160,150 190,150 190,180"
+        fill="none"
+        stroke="#22d3ee"
+        strokeOpacity="0.85"
+        strokeWidth="2"
+      />
+      <circle cx="140" cy="118" r="1.5" fill="#fb923c" fillOpacity="0.8" />
+      <circle cx="129" cy="112" r="1.5" fill="#fb923c" fillOpacity="0.6" />
+      <circle cx="146" cy="105" r="1.5" fill="#fb923c" fillOpacity="0.4" />
+
+      {/* Streaming pipeline: sensor -> Kafka -> LSTM model */}
+      <circle cx="300" cy="112" r="14" fill="none" stroke="#22d3ee" strokeWidth="2" strokeOpacity="0.85" />
+      <circle cx="300" cy="112" r="4" fill="#22d3ee" fillOpacity="0.6" />
+      <line x1="316" y1="112" x2="364" y2="112" stroke="#e5e7eb" strokeOpacity="0.3" strokeWidth="1.5" strokeDasharray="4 4" />
+      <polygon points={hexPoints(392, 112, 24)} fill="rgba(251,146,60,0.08)" stroke="#fb923c" strokeWidth="2" strokeOpacity="0.85" />
+      <line x1="418" y1="112" x2="466" y2="112" stroke="#e5e7eb" strokeOpacity="0.3" strokeWidth="1.5" strokeDasharray="4 4" />
+      <rect x="470" y="94" width="36" height="36" rx="5" fill="none" stroke="#22d3ee" strokeOpacity="0.85" strokeWidth="2" />
+      <polyline points="478,118 486,104 494,116 502,106" fill="none" stroke="#22d3ee" strokeOpacity="0.85" strokeWidth="1.5" />
+
+      {/* Predictive forecast: historical telemetry -> forecast crossing failure threshold */}
+      <polyline
+        points="560,140 585,132 610,148 635,128 660,140"
+        fill="none"
+        stroke="#e5e7eb"
+        strokeOpacity="0.5"
+        strokeWidth="2"
+      />
+      <line x1="660" y1="40" x2="660" y2="190" stroke="#e5e7eb" strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="3 4" />
+      <line x1="660" y1="70" x2="780" y2="70" stroke="#ef4444" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="2 4" />
+      <polyline
+        points="660,140 690,120 720,90 745,72"
+        fill="none"
+        stroke="#fb923c"
+        strokeWidth="2"
+        strokeOpacity="0.9"
+        strokeDasharray="5 4"
+      />
+      <path d="M745,42 L763,74 L727,74 Z" fill="none" stroke="#ef4444" strokeWidth="1.5" strokeOpacity="0.9" />
+      <line x1="745" y1="53" x2="745" y2="63" stroke="#ef4444" strokeWidth="1.5" strokeOpacity="0.9" />
+      <circle cx="745" cy="68" r="1.3" fill="#ef4444" fillOpacity="0.9" />
+      <text x="700" y="200" fontSize="11" fill="#ef4444" fillOpacity="0.85" fontFamily="monospace">24h forecast</text>
+    </Frame>
+  );
+};
 
 // Carbon-Aware Kubernetes Scheduler: hex pod grid, low-carbon nodes lit up
 export const KubernetesArt = ({ className }) => {
