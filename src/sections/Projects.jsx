@@ -205,9 +205,6 @@ const Projects = () => {
                       onClick={() => openModelViewer(project)}
                     >
                       <div className="absolute inset-0 bg-black/20 group-hover/model:bg-black/40 transition-all duration-300 z-10">
-                        <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-2 rounded-lg border border-orange-400/50">
-                          <span className="text-orange-400 font-medium text-xs">Click to explore in 3D</span>
-                        </div>
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/model:opacity-100 transition-all duration-300">
                           <div className="bg-orange-500/90 text-white px-6 py-3 rounded-xl font-semibold">
                             View 3D Model
@@ -262,7 +259,7 @@ const Projects = () => {
               )}
 
               {/* Project Header - Screenshot/GIF for CS Projects */}
-              {!project.model && project.image && project.imageFit !== 'contain' && (
+              {!project.model && project.image && !project.imageFit && (
                 <div className="relative h-56 w-full overflow-hidden">
                   <img
                     src={project.image}
@@ -297,6 +294,36 @@ const Projects = () => {
                     loading="lazy"
                     className="max-h-full max-w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-105"
                   />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
+                      AI & Data Science
+                    </span>
+                  </div>
+                  {project.github && (
+                    <div className="absolute top-4 right-4">
+                      <CornerLinkBadge href={project.github} label="View code on GitHub">
+                        <GithubIcon />
+                      </CornerLinkBadge>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Project Header - Framed figure/chart for CS Projects (e.g. a plain white-background plot) */}
+              {!project.model && project.image && project.imageFit === 'framed' && (
+                <div className="relative h-56 w-full overflow-hidden bg-gradient-to-br from-sky-950/50 via-black/50 to-black/60 flex items-center justify-center p-6">
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: 'radial-gradient(circle at 30% 25%, rgba(56,189,248,0.18), transparent 60%)' }}
+                  />
+                  <div className="relative bg-white rounded-lg p-3 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} figure`}
+                      loading="lazy"
+                      className="max-h-36 w-auto object-contain rounded"
+                    />
+                  </div>
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
                       AI & Data Science

@@ -229,6 +229,7 @@ export const myProjects = [
   {
     title: 'ML Pipeline for Cardiovascular Risk Prediction – Framingham Study',
     image: '/assets/projects/framingham-roc.png',
+    imageFit: 'framed',
     desc: 'Built an ML pipeline with EDA, imputation, winsorization, RobustScaler, stratified split, and SMOTEENN. Tuned Logistic Regression, SVM, and XGBoost using GridSearchCV.',
     subdesc: 'Comprehensive machine learning project focusing on healthcare applications and fairness in AI.',
     href: 'https://github.com/yassine12-12/framingham-heart-disease-prediction',
