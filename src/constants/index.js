@@ -62,7 +62,8 @@ export const workExperiences = [
         duration: 'Aug 2023 - Present',
         bullets: [
           'Integrated LLM-assisted features into an internal engineering platform (FastAPI backend, React/Tailwind frontend)',
-          'Worked closely with engineers to build data-processing and engineering-calculation tools automating their workflows',
+          'Built data-processing and engineering-calculation pipelines for workflow automation',
+          'Worked closely with engineers to build tools and software solutions automating their workflows',
           'Built a thermal-fluid simulation library for engineers designing motor cooling systems',
         ],
       },
