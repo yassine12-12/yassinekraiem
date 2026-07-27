@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment } from '@react-three/drei';
+import { OrbitControls, Environment, Html } from '@react-three/drei';
 import { Suspense } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import { useWebGLSupport } from '../hooks/useWebGLSupport';
@@ -15,6 +15,20 @@ const ViewerFallback = () => (
   </div>
 );
 
+const ViewerLoading = () => (
+  <div className="flex flex-col items-center gap-3 pointer-events-none whitespace-nowrap">
+    <span className="text-3xl animate-pulse">⚙️</span>
+    <p className="text-orange-300/80 text-xs tracking-[0.2em] uppercase">Loading model</p>
+  </div>
+);
+
+const CONTROLS = [
+  { icon: '🖱️', label: 'Rotate', hint: 'Left click + drag' },
+  { icon: '🔍', label: 'Zoom', hint: 'Scroll' },
+  { icon: '⚡', label: 'Pan', hint: 'Right click + drag' },
+  { icon: '❌', label: 'Close', hint: 'Esc' },
+];
+
 const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
   const webglSupported = useWebGLSupport();
 
@@ -22,22 +36,43 @@ const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="relative w-full h-full max-w-4xl max-h-[80vh] bg-gray-900/95 rounded-xl overflow-hidden">
+      <div className="relative w-full h-full max-w-4xl max-h-[80vh] rounded-xl overflow-hidden bg-black/40 backdrop-blur-md border border-orange-500/20 shadow-[0_20px_60px_-15px_rgba(251,146,60,0.25)]">
         {/* Header */}
-        <div className="absolute top-0 left-0 right-0 z-10 p-4 bg-gradient-to-b from-gray-900/90 to-transparent">
-          <div className="flex justify-between items-center">
-            <h2 className="text-white text-xl font-semibold">{title}</h2>
+        <div className="absolute top-0 left-0 right-0 z-10 backdrop-blur-md bg-black/50 border-b border-white/10">
+          <div className="flex justify-between items-center gap-4 p-4">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="shrink-0 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wide uppercase bg-orange-500/15 text-orange-300 border border-orange-400/30">
+                3D Model
+              </span>
+              <h2 className="text-white text-lg font-semibold truncate">{title}</h2>
+            </div>
             <button
               onClick={onClose}
-              className="text-white hover:text-red-400 transition-colors duration-300 text-2xl font-bold"
+              aria-label="Close 3D viewer"
+              className="shrink-0 w-9 h-9 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-red-400 hover:bg-red-500/10 hover:border-red-400/30 transition-all duration-300"
             >
-              ×
+              <span className="text-lg leading-none">×</span>
             </button>
           </div>
         </div>
 
         {/* 3D Viewer */}
-        <div className="w-full h-full" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+        <div
+          className="relative w-full h-full"
+          style={{
+            background:
+              'radial-gradient(circle at 50% 45%, rgba(251,146,60,0.10) 0%, rgba(10,10,10,0) 55%), linear-gradient(135deg, #0a0a0a 0%, #16130f 50%, #0a0a0a 100%)',
+          }}
+        >
+          <div
+            className="absolute inset-0 opacity-[0.07] pointer-events-none"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(251,146,60,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(251,146,60,0.6) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }}
+          />
+
           {webglSupported ? (
             <ErrorBoundary fallback={<ViewerFallback />}>
               <Canvas
@@ -46,7 +81,7 @@ const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
                   fov: 45
                 }}
               >
-                <Suspense fallback={null}>
+                <Suspense fallback={<Html center><ViewerLoading /></Html>}>
                   <OrbitControls
                     enablePan
                     enableZoom
@@ -85,14 +120,18 @@ const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
         </div>
 
         {/* Controls Info */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-gray-900/90 to-transparent">
-          <div className="text-white text-xs opacity-80">
-            <div className="flex flex-wrap gap-4">
-              <span>🖱️ <strong>Left Click + Drag:</strong> Rotate</span>
-              <span>🔍 <strong>Scroll:</strong> Zoom</span>
-              <span>⚡ <strong>Right Click + Drag:</strong> Pan</span>
-              <span>❌ <strong>ESC:</strong> Close</span>
-            </div>
+        <div className="absolute bottom-0 left-0 right-0 z-10 backdrop-blur-md bg-black/50 border-t border-white/10 p-3">
+          <div className="flex flex-wrap justify-center gap-2">
+            {CONTROLS.map((c) => (
+              <span
+                key={c.label}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs bg-orange-500/10 border border-orange-400/20 text-orange-200/90"
+              >
+                <span aria-hidden>{c.icon}</span>
+                <strong className="font-semibold text-orange-200">{c.label}</strong>
+                <span className="text-orange-200/60">· {c.hint}</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>
