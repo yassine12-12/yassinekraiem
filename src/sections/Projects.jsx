@@ -220,10 +220,28 @@ const Projects = () => {
                 </div>
               )}
 
+              {/* Project Header - Screenshot/GIF for CS Projects */}
+              {!project.model && project.image && (
+                <div className="relative h-56 w-full overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/10" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
+                      AI & Data Science
+                    </span>
+                  </div>
+                </div>
+              )}
+
               {/* Project Content */}
               <div className="p-8">
-                {/* Category Badge for CS Projects (no header) */}
-                {!project.model && (
+                {/* Category Badge for CS Projects without a header image */}
+                {!project.model && !project.image && (
                   <div className="mb-4">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
                       AI & Data Science

@@ -94,6 +94,7 @@ export const studiedata = [
 export const myProjects = [
   {
     title: 'AI-Powered Assembly Work Instruction Generator',
+    image: '/assets/projects/ai-work-instructions.png',
     desc: 'Automatically generates structured, bilingual (DE/EN) assembly work instructions (PDF) from a raw assembly video.',
     subdesc: 'Reduces manual work instruction authoring effort by up to 90% for structured assembly processes, validated on multiple assembly types.',
     href: 'https://github.com/yassine12-12/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
@@ -126,6 +127,7 @@ export const myProjects = [
   },
   {
     title: 'AI-Based Cycle Time Monitoring – Human-Robot Collaboration',
+    image: '/assets/projects/cycle-time-monitoring.jpg',
     desc: 'Automated assembly cycle-time measurement using YOLOv8, MediaPipe, and OpenCV to detect assembly steps. Collected data and developed a vision pipeline, including training and optimizing YOLOv8 models.',
     subdesc: 'Advanced computer vision techniques applied to industrial automation.',
     href: 'https://github.com/yassine12-12/AI-Based-Cycle-Time-Monitoring-for-Human-Assembly-Processes-in-Human-Robot-Collaboration',
@@ -186,6 +188,7 @@ export const myProjects = [
   },
   {
     title: 'Automotive Manufacturing Data Analytics',
+    image: '/assets/projects/automotive-analytics.png',
     desc: 'Cleaned and merged multi-source production data; applied ML to predict delays and find bottlenecks. Built interactive dashboards with pandas, Plotly, and Dash for analysis and reporting.',
     subdesc: 'Demonstrated expertise in data engineering and visualization for industrial applications.',
     href: 'https://github.com/yassine12-12/Automotive-Production-Lead-Time-Analysis',
@@ -216,6 +219,7 @@ export const myProjects = [
   },
   {
     title: 'ML Pipeline for Cardiovascular Risk Prediction – Framingham Study',
+    image: '/assets/projects/framingham-roc.png',
     desc: 'Built an ML pipeline with EDA, imputation, winsorization, RobustScaler, stratified split, and SMOTEENN. Tuned Logistic Regression, SVM, and XGBoost using GridSearchCV.',
     subdesc: 'Comprehensive machine learning project focusing on healthcare applications and fairness in AI.',
     href: 'https://github.com/yassine12-12/framingham-heart-disease-prediction',
@@ -347,6 +351,7 @@ export const myProjects = [
   },
   {
     title: 'Claudroom — macOS Menu Bar App',
+    image: '/assets/projects/claudroom.png',
     desc: 'Native macOS menu-bar app (Swift/SwiftUI) that tracks Claude Max subscription capacity in real time — remaining quota, per-model usage breakdown, and plan-fit advice.',
     subdesc: 'Personal product built end-to-end in Swift, from data collection to a packaged, tested macOS app.',
     href: 'https://github.com/yassine12-12/claudroom',
@@ -374,6 +379,7 @@ export const myProjects = [
   },
   {
     title: 'VESTL — Live Transit Display',
+    image: '/assets/projects/vestl.gif',
     desc: 'Wall-mounted hardware product: a Raspberry Pi driving a 3:1 ultra-wide screen at the apartment entrance, showing live departures for the nearest bus/tram/U-Bahn/S-Bahn.',
     subdesc: 'Combines deliberate hardware form-factor design with a React/TypeScript kiosk display and live transit data.',
     href: 'https://github.com/yassine12-12/vestl',
