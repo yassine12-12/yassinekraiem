@@ -44,38 +44,42 @@ export const navLinks = [
 
 export const workExperiences = [
   {
-    id: 3,
-    name: 'Innomotics GmbH',
-    pos: "Master's Thesis — LLM Tool Calling & Agents",
-    duration: 'Through Oct 2026',
-    bullets: [
-      'Built a unified evaluation platform comparing native function calling, REST, and MCP integrations across local and frontier LLMs',
-      'Designed ReAct-based agent orchestration and a from-scratch RAG pipeline (TF-IDF, dense retrieval, cross-encoder reranking)',
-      'Validated results with real statistics — confidence intervals, McNemar tests, mixed-effects models — instead of qualitative claims',
-      'Built a proof-of-concept engineering assistant on self-hosted models and presented results to domain experts',
-    ],
-    icon: '/assets/innomotics_logo.jpeg',
-  },
-  {
     id: 2,
     name: 'Innomotics GmbH',
-    pos: 'Working Student — AI & Full-Stack Development',
-    duration: 'Aug 2023 - Present',
-    bullets: [
-      'Integrated LLM-assisted features into an internal engineering platform (FastAPI backend, React/Tailwind frontend)',
-      'Built data-processing and engineering-calculation pipelines for workflow automation',
-      'Implemented TwinCAT/Python data pipelines for active vibration control',
-      'Ported MATLAB/Simulink models to Python; built a thermal-fluid simulation library for motor cooling',
-    ],
     icon: '/assets/innomotics_logo.jpeg',
+    positions: [
+      {
+        pos: "Master's Thesis — LLM Tool Calling & Agents",
+        duration: 'Through Oct 2026',
+        bullets: [
+          'Built a unified evaluation platform comparing native function calling, REST, and MCP integrations across local and frontier LLMs',
+          'Designed ReAct-based agent orchestration and a from-scratch RAG pipeline (TF-IDF, dense retrieval, cross-encoder reranking)',
+          'Built a proof-of-concept engineering assistant on self-hosted models and presented results to domain experts',
+        ],
+      },
+      {
+        pos: 'Working Student — AI & Full-Stack Development',
+        duration: 'Aug 2023 - Present',
+        bullets: [
+          'Integrated LLM-assisted features into an internal engineering platform (FastAPI backend, React/Tailwind frontend)',
+          'Built data-processing and engineering-calculation pipelines for workflow automation',
+          'Implemented TwinCAT/Python data pipelines for active vibration control',
+          'Built a thermal-fluid simulation library for engineers designing motor cooling systems',
+        ],
+      },
+    ],
   },
   {
     id: 1,
     name: 'AKG Software Consulting',
-    pos: 'Working Student',
-    duration: 'Oct 2022 - Jul 2023',
-    title: "Automated setup processes and created functional/non-functional test cases. Executed tests, documented results, and reported issues.",
     icon: '/assets/akg_logo.png',
+    positions: [
+      {
+        pos: 'Working Student',
+        duration: 'Oct 2022 - Jul 2023',
+        title: "Automated setup processes and created functional/non-functional test cases. Executed tests, documented results, and reported issues.",
+      },
+    ],
   },
 ];
 
@@ -85,7 +89,7 @@ export const studiedata = [
     name: 'Technical University of Berlin, Computational Engineering Science (M.Sc.)',
     pos: 'Master Student',
     duration: 'Oct 2024 - Expected Oct 2026',
-    title: 'Pursuing a master\'s degree with specialization in Artificial Intelligence and Data Science, focusing on advanced computational methods and machine learning applications. Current grade: 1.6.',
+    title: 'Pursuing a master\'s degree with specialization in Artificial Intelligence and Data Science. Current grade: 1.6.',
     icon: '/assets/TU-Berlin.png',
   },
   {
@@ -93,7 +97,7 @@ export const studiedata = [
     name: 'Technical University of Berlin, Mechanical Engineering (B.Sc.)',
     pos: 'Bachelor Graduate',
     duration: 'Sep 2020 - Jul 2024',
-    title: 'Graduated with Bachelor of Science in Mechanical Engineering, specializing in Applied AI for Industrial Systems, with a focus on technical design, simulations, and engineering principles.',
+    title: 'Graduated with Bachelor of Science in Mechanical Engineering, specializing in Applied AI for Industrial Systems.',
     icon: '/assets/TU-Berlin.png',
   },
   {

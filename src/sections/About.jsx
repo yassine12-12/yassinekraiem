@@ -26,10 +26,9 @@ const About = () => {
   };
 
   const skills = [
-    "Generative AI", "LLM Integration", "Prompt Engineering",
-    "Computer Vision", "YOLOv8", "CLIP",
-    "Machine Learning", "Deep Learning",
-    "Python", "MLOps", "Industrial AI",
+    "Generative AI", "Agentic AI", "MCP", "RAG",
+    "Computer Vision", "YOLOv8", "PyTorch",
+    "Kubernetes", "Python", "FastAPI", "Mechanical Engineering",
   ];
 
   return (

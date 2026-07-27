@@ -76,47 +76,53 @@ const WorkExperience = () => {
                 className="ml-8 flex-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300"
                 whileHover={{ y: -5 }}
               >
-                <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">{item.name}</h3>
-                    <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 mb-4">
-                      <span className="text-lg font-semibold text-gray-300">{item.pos}</span>
-                      <div className="hidden lg:block w-1 h-1 bg-gray-500 rounded-full"></div>
-                      <span className="text-sm text-gray-400 font-medium bg-white/10 px-3 py-1 rounded-full">
-                        {item.duration}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                {item.bullets ? (
-                  <ul className="space-y-2">
-                    {item.bullets.map((bullet, bulletIndex) => (
-                      <li key={bulletIndex} className="flex items-start gap-3 text-gray-300 leading-relaxed text-lg">
-                        <span className="mt-3 w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-gray-300 leading-relaxed text-lg">
-                    {item.title}
-                  </p>
-                )}
+                <h3 className="text-2xl font-bold text-white mb-4">{item.name}</h3>
 
-                {/* Skills/Technologies used - if available */}
-                {item.technologies && (
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {item.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-white/10 border border-white/20 text-white text-xs rounded-full font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <div className="space-y-6">
+                  {item.positions.map((position, posIndex) => (
+                    <div
+                      key={posIndex}
+                      className={posIndex > 0 ? 'pt-6 border-t border-white/10' : ''}
+                    >
+                      <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 mb-3">
+                        <span className="text-lg font-semibold text-gray-300">{position.pos}</span>
+                        <div className="hidden lg:block w-1 h-1 bg-gray-500 rounded-full"></div>
+                        <span className="text-sm text-gray-400 font-medium bg-white/10 px-3 py-1 rounded-full">
+                          {position.duration}
+                        </span>
+                      </div>
+
+                      {position.bullets ? (
+                        <ul className="space-y-2">
+                          {position.bullets.map((bullet, bulletIndex) => (
+                            <li key={bulletIndex} className="flex items-start gap-3 text-gray-300 leading-relaxed text-lg">
+                              <span className="mt-3 w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-gray-300 leading-relaxed text-lg">
+                          {position.title}
+                        </p>
+                      )}
+
+                      {/* Skills/Technologies used - if available */}
+                      {position.technologies && (
+                        <div className="mt-6 flex flex-wrap gap-2">
+                          {position.technologies.map((tech, techIndex) => (
+                            <span
+                              key={techIndex}
+                              className="px-3 py-1 bg-white/10 border border-white/20 text-white text-xs rounded-full font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             </motion.div>
           ))}
