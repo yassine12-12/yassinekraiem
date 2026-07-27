@@ -2,7 +2,7 @@ import { myProjects } from '../constants/index.js';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Suspense, useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Model3DViewer from '../components/Model3DViewer';
 import PDFViewer from '../components/PDFViewer';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -26,6 +26,36 @@ const DocIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
   </svg>
 );
+
+const CyclingImage = ({ images, alt, position }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, [images.length]);
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.img
+        key={images[index]}
+        src={images[index]}
+        alt={alt}
+        loading="lazy"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6 }}
+        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+          position === 'top' ? 'object-top' : 'object-center'
+        }`}
+      />
+    </AnimatePresence>
+  );
+};
 
 const CornerLinkBadge = ({ href, onClick, label, children }) => {
   const Tag = href ? motion.a : motion.button;
@@ -252,6 +282,26 @@ const Projects = () => {
                     <div className="absolute bottom-4 right-4">
                       <CornerLinkBadge label="Documentation" onClick={() => openPDFViewer(project)}>
                         <DocIcon />
+                      </CornerLinkBadge>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Project Header - Cycling screenshots for CS Projects with multiple photos */}
+              {!project.model && project.images && (
+                <div className="relative h-56 w-full overflow-hidden">
+                  <CyclingImage images={project.images} alt={`${project.title} preview`} position={project.imagePosition} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/10" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
+                      AI & Data Science
+                    </span>
+                  </div>
+                  {project.github && (
+                    <div className="absolute top-4 right-4">
+                      <CornerLinkBadge href={project.github} label="View code on GitHub">
+                        <GithubIcon />
                       </CornerLinkBadge>
                     </div>
                   )}
