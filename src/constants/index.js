@@ -504,7 +504,6 @@ export const myProjects = [
     title: 'Pulley-Based Lifting Device',
     desc: 'Developed a compact, safe lifting system using gear design, tolerance analysis, and strength verification. Conducted optimization with Kutzbach plans and gear dimensioning in KISSsoft.',
     subdesc: 'This project focused on mechanical optimization and safety in lifting systems, utilizing advanced gear design and analysis tools.',
-    href: '/assets/pulley-project.pdf',
     texture: '/textures/project/project5.mp4',
     category: "mechanical",
     technologies: ["VDI-2221", "SolidEdge", "KISSsoft", "Gear Design", "Safety Analysis"],
