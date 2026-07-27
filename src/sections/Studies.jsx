@@ -61,7 +61,7 @@ const Studies = () => {
           {/* Central Timeline Line */}
           <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-white/20"></div>
 
-          {studiedata.map((item, index) => (
+          {studiedata.map((item) => (
             <motion.div
               key={item.id}
               className="relative flex items-start mb-12 last:mb-0"
@@ -85,39 +85,42 @@ const Studies = () => {
                 className="ml-8 flex-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300"
                 whileHover={{ y: -5 }}
               >
-                <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2 leading-tight">{item.name}</h3>
-                    <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 mb-4">
-                      <span className="text-lg font-semibold text-gray-300">{item.pos}</span>
-                      <div className="hidden lg:block w-1 h-1 bg-gray-500 rounded-full"></div>
-                      <span className="text-sm text-gray-400 font-medium bg-white/10 px-3 py-1 rounded-full">
-                        {item.duration}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-gray-300 leading-relaxed text-lg">
-                  {item.title}
-                </p>
+                <h3 className="text-2xl font-bold text-white mb-4 leading-tight">{item.name}</h3>
 
-                {/* Achievement Badge */}
-                <div className="mt-6 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-sm text-gray-400">
-                      {index === 0 ? 'Current' : 'Completed'}
-                    </span>
-                  </div>
-                  
-                  {/* Degree Type Badge */}
-                  <span className="px-3 py-1 bg-white/10 border border-white/20 text-white text-xs rounded-full font-medium">
-                    {item.pos.includes('Master') ? 'Master\'s Degree' : 
-                     item.pos.includes('Bachelor') ? 'Bachelor\'s Degree' : 
-                     item.pos.includes('Language') ? 'Language Certification' : 
-                     'High School Diploma'}
-                  </span>
+                <div className="space-y-6">
+                  {item.programs.map((program, progIndex) => (
+                    <div
+                      key={progIndex}
+                      className={progIndex > 0 ? 'pt-6 border-t border-white/10' : ''}
+                    >
+                      <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 mb-3">
+                        <span className="text-lg font-semibold text-gray-300">{program.pos}</span>
+                        <div className="hidden lg:block w-1 h-1 bg-gray-500 rounded-full"></div>
+                        <span className="text-sm text-gray-400 font-medium bg-white/10 px-3 py-1 rounded-full">
+                          {program.duration}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-300 leading-relaxed text-lg">
+                        {program.title}
+                      </p>
+
+                      {/* Achievement Badge */}
+                      <div className="mt-6 flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                          <span className="text-sm text-gray-400">
+                            {program.status}
+                          </span>
+                        </div>
+
+                        {/* Degree Type Badge */}
+                        <span className="px-3 py-1 bg-white/10 border border-white/20 text-white text-xs rounded-full font-medium">
+                          {program.degreeType}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             </motion.div>

@@ -81,7 +81,7 @@ const About = () => {
                 </p>
                 
                 <p>
-                  My expertise spans machine learning, computer vision, and engineering design, 
+                  My expertise spans agentic AI, machine learning, computer vision, and engineering design,
                   with a focus on developing innovative automation solutions.
                 </p>
               </motion.div>

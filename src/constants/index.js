@@ -85,36 +85,53 @@ export const workExperiences = [
 
 export const studiedata = [
   {
-    id: 4,
-    name: 'Technical University of Berlin, Computational Engineering Science (M.Sc.)',
-    pos: 'Master Student',
-    duration: 'Oct 2024 - Expected Oct 2026',
-    title: 'Pursuing a master\'s degree with specialization in Artificial Intelligence and Data Science. Current grade: 1.6.',
-    icon: '/assets/TU-Berlin.png',
-  },
-  {
     id: 3,
-    name: 'Technical University of Berlin, Mechanical Engineering (B.Sc.)',
-    pos: 'Bachelor Graduate',
-    duration: 'Sep 2020 - Jul 2024',
-    title: 'Graduated with Bachelor of Science in Mechanical Engineering, specializing in Applied AI for Industrial Systems.',
+    name: 'Technical University of Berlin',
     icon: '/assets/TU-Berlin.png',
+    programs: [
+      {
+        pos: 'M.Sc. Computational Engineering Science',
+        duration: 'Oct 2024 - Expected Oct 2026',
+        title: 'Pursuing a master\'s degree with specialization in Artificial Intelligence and Data Science. Current grade: 1.6.',
+        status: 'Current',
+        degreeType: "Master's Degree",
+      },
+      {
+        pos: 'B.Sc. Mechanical Engineering',
+        duration: 'Sep 2020 - Jul 2024',
+        title: 'Graduated with Bachelor of Science in Mechanical Engineering, specializing in Applied AI for Industrial Systems.',
+        status: 'Completed',
+        degreeType: "Bachelor's Degree",
+      },
+    ],
   },
   {
     id: 2,
     name: 'f+u Academy of Languages, Berlin',
-    pos: 'Language Student',
-    duration: '2019 - 2020',
-    title: 'Completed intensive German language program, achieving C1 level proficiency and TestDaF certification.',
     icon: '/assets/fu_logo.png',
+    programs: [
+      {
+        pos: 'Language Student',
+        duration: '2019 - 2020',
+        title: 'Completed intensive German language program, achieving C1 level proficiency and TestDaF certification.',
+        status: 'Completed',
+        degreeType: 'Language Certification',
+      },
+    ],
   },
   {
     id: 1,
     name: 'Elite High School, Tunisia',
-    pos: 'High School Graduate',
-    duration: '2015 - 2019',
-    title: 'Completed high school diploma (Abitur equivalent) with strong performance in mathematics and sciences.',
     icon: '/assets/tn.png',
+    programs: [
+      {
+        pos: 'High School Graduate',
+        duration: '2015 - 2019',
+        title: 'Completed high school diploma (Abitur equivalent) with strong performance in mathematics and sciences.',
+        status: 'Completed',
+        degreeType: 'High School Diploma',
+      },
+    ],
   },
 ];
 
