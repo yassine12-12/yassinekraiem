@@ -226,7 +226,7 @@ const Hero = () => {
             {/* Photo */}
             <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
               <img
-                src="/assets/yassine.png"
+                src="/assets/yassine.jpg"
                 alt="Yassine Kraiem"
                 className="w-full h-full object-cover object-top"
               />
