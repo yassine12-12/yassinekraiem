@@ -1,8 +1,23 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment } from '@react-three/drei';
 import { Suspense } from 'react';
+import ErrorBoundary from './ErrorBoundary';
+import { useWebGLSupport } from '../hooks/useWebGLSupport';
+
+const ViewerFallback = () => (
+  <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-6">
+    <span className="text-4xl">🔧</span>
+    <p className="text-white font-medium">3D viewing isn&apos;t supported in this browser</p>
+    <p className="text-gray-400 text-sm max-w-sm">
+      Your browser or device doesn&apos;t support WebGL, which this 3D viewer needs. Try a different
+      browser or device.
+    </p>
+  </div>
+);
 
 const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
+  const webglSupported = useWebGLSupport();
+
   if (!isOpen) return null;
 
   return (
@@ -22,46 +37,51 @@ const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
         </div>
 
         {/* 3D Viewer */}
-        <div className="w-full h-full">
-          <Canvas 
-            camera={{ 
-              position: [20, 20, 20], 
-              fov: 45 
-            }}
-            style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}
-          >
-            <Suspense fallback={null}>
-              <OrbitControls 
-                enablePan 
-                enableZoom 
-                enableRotate 
-                autoRotate={false}
-                target={[0, 0, 0]}
-                minDistance={5}
-                maxDistance={150}
-                enableDamping={true}
-                dampingFactor={0.05}
-              />
-              
-              {/* Enhanced lighting for better visibility */}
-              <ambientLight intensity={0.8} />
-              <directionalLight position={[20, 20, 10]} intensity={1.5} castShadow />
-              <directionalLight position={[-20, -20, -10]} intensity={1} />
-              <directionalLight position={[0, 20, 0]} intensity={0.8} />
-              <pointLight position={[10, 10, 10]} intensity={0.5} />
-              
-              {/* Environment for reflections */}
-              <Environment preset="studio" />
-              
-              {ModelComponent && (
-                <ModelComponent 
-                  position={[0, 0, 0]}
-                  rotation={[0, 0, 0]}
-                  scale={title?.includes('Lifting Unit') ? 0.02 : 0.025}
-                />
-              )}
-            </Suspense>
-          </Canvas>
+        <div className="w-full h-full" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+          {webglSupported ? (
+            <ErrorBoundary fallback={<ViewerFallback />}>
+              <Canvas
+                camera={{
+                  position: [20, 20, 20],
+                  fov: 45
+                }}
+              >
+                <Suspense fallback={null}>
+                  <OrbitControls
+                    enablePan
+                    enableZoom
+                    enableRotate
+                    autoRotate={false}
+                    target={[0, 0, 0]}
+                    minDistance={5}
+                    maxDistance={150}
+                    enableDamping={true}
+                    dampingFactor={0.05}
+                  />
+
+                  {/* Enhanced lighting for better visibility */}
+                  <ambientLight intensity={0.8} />
+                  <directionalLight position={[20, 20, 10]} intensity={1.5} castShadow />
+                  <directionalLight position={[-20, -20, -10]} intensity={1} />
+                  <directionalLight position={[0, 20, 0]} intensity={0.8} />
+                  <pointLight position={[10, 10, 10]} intensity={0.5} />
+
+                  {/* Environment for reflections */}
+                  <Environment preset="studio" />
+
+                  {ModelComponent && (
+                    <ModelComponent
+                      position={[0, 0, 0]}
+                      rotation={[0, 0, 0]}
+                      scale={title?.includes('Lifting Unit') ? 0.02 : 0.025}
+                    />
+                  )}
+                </Suspense>
+              </Canvas>
+            </ErrorBoundary>
+          ) : (
+            <ViewerFallback />
+          )}
         </div>
 
         {/* Controls Info */}
