@@ -239,10 +239,22 @@ const Projects = () => {
                 </div>
               )}
 
+              {/* Project Header - Generative art for CS Projects with no real screenshot */}
+              {!project.model && !project.image && project.art && (
+                <div className="relative h-56 w-full overflow-hidden">
+                  <project.art className="w-full h-full transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
+                      AI & Data Science
+                    </span>
+                  </div>
+                </div>
+              )}
+
               {/* Project Content */}
               <div className="p-8">
-                {/* Category Badge for CS Projects without a header image */}
-                {!project.model && !project.image && (
+                {/* Category Badge for CS Projects without a header image or art */}
+                {!project.model && !project.image && !project.art && (
                   <div className="mb-4">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-black">
                       AI & Data Science

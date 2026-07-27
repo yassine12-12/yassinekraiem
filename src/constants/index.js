@@ -1,6 +1,15 @@
 ﻿import Hubwerkseinheit from "../components/Hubwerkseinheit";
 import TischNew from "../components/TischNew";
 import Flaschenzug from "../components/Flaschenzug";
+import {
+  CNCMonitoringArt,
+  KubernetesArt,
+  NeuralNetArt,
+  DecisionBoundaryArt,
+  PortfolioArt,
+  LandmarkArt,
+  MarketplaceArt,
+} from "../components/ProjectArt";
 
 export const navLinks = [
   {
@@ -159,6 +168,7 @@ export const myProjects = [
   },
   {
     title: 'AI-Based CNC Monitoring Platform',
+    art: CNCMonitoringArt,
     desc: 'Built real-time monitoring with cameras, sensors, YOLOv8 and LSTM. Integrated OPC UA, Apache Kafka for advanced industrial IoT project combining computer vision and time series analysis.',
     subdesc: 'Advanced industrial IoT project combining computer vision and time series analysis.',
     category: "computer-science",
@@ -251,6 +261,7 @@ export const myProjects = [
   },
   {
     title: 'Deep Learning Course Projects',
+    art: NeuralNetArt,
     desc: 'Built CNNs, LSTMs, and Autoencoders for classification, anomaly detection, and time series forecasting. Used batch normalization, early stopping, and ROC curves for model evaluation.',
     subdesc: 'Hands-on experience with deep learning architectures and model evaluation techniques.',
     href: 'https://github.com/yassine12-12',
@@ -281,6 +292,7 @@ export const myProjects = [
   },
   {
     title: 'Applied Machine Learning in Engineering',
+    art: DecisionBoundaryArt,
     desc: 'Implemented ML techniques: regression, kNN, SVM, trees, ensembles (bagging/boosting). Applied clustering (K-means, DBSCAN), encoding/normalization, validation (k-fold), and evaluation (F1, ROC/PR).',
     subdesc: 'Comprehensive exploration of machine learning algorithms and their applications in engineering contexts.',
     href: 'https://github.com/yassine12-12',
@@ -302,6 +314,7 @@ export const myProjects = [
   },
   {
     title: 'Personal Portfolio Website',
+    art: PortfolioArt,
     desc: 'Designed and developed a responsive personal website to showcase projects and skills. Implemented modern UI with React, Three.js, and Tailwind CSS.',
     subdesc: 'Modern web development project with 3D graphics and responsive design.',
     href: 'https://github.com/yassine12-12/yassinekraiem',
@@ -324,6 +337,7 @@ export const myProjects = [
   },
   {
     title: 'Carbon-Aware Kubernetes Scheduler',
+    art: KubernetesArt,
     desc: 'Custom Kubernetes scheduler (Python, Kopf operator) that places workloads by real-time CO2 intensity instead of default bin-packing.',
     subdesc: 'Self-deployed the full cloud stack across three providers to evaluate the scheduler against 300+ real workloads.',
     href: 'https://github.com/yassine12-12/Cloud-Computing-WiSe-2025-26',
@@ -409,6 +423,7 @@ export const myProjects = [
   },
   {
     title: 'Munich Tech Arena 2026 — 3D Ear Landmark Extraction',
+    art: LandmarkArt,
     desc: 'Competition pipeline (Huawei challenge) extracting 85 ordered 3D landmarks per ear from raw 3D head meshes, scored on mean Euclidean distance.',
     subdesc: 'Non-rigid template registration pipeline built for a live hackathon-style competition.',
     category: 'computer-science',
@@ -434,6 +449,7 @@ export const myProjects = [
   },
   {
     title: 'Sooqy.tn — Classified Ads Marketplace',
+    art: MarketplaceArt,
     desc: 'Full-stack MERN classified-ads marketplace built for the Tunisian market, trilingual (French/Arabic/English) and covering all 24 governorates.',
     subdesc: 'Solo-built product: 43 commits end-to-end, from auth to production deployment.',
     category: 'computer-science',
