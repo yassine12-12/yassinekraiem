@@ -6,7 +6,6 @@ import {
   KubernetesArt,
   NeuralNetArt,
   DecisionBoundaryArt,
-  MarketplaceArt,
 } from "../components/ProjectArt";
 
 export const navLinks = [
@@ -485,7 +484,7 @@ export const myProjects = [
   },
   {
     title: 'Sooqy.tn — Classified Ads Marketplace',
-    art: MarketplaceArt,
+    image: '/assets/projects/sooqy-homepage.jpg',
     desc: 'Full-stack MERN classified-ads marketplace built for the Tunisian market, trilingual (French/Arabic/English) and covering all 24 governorates.',
     subdesc: 'Solo-built end-to-end, from auth to production deployment.',
     category: 'computer-science',
