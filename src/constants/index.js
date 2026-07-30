@@ -1,12 +1,17 @@
-﻿import Hubwerkseinheit from "../components/Hubwerkseinheit";
-import TischNew from "../components/TischNew";
-import Flaschenzug from "../components/Flaschenzug";
+﻿import { lazy } from "react";
 import {
   CNCMonitoringArt,
   KubernetesArt,
   NeuralNetArt,
   DecisionBoundaryArt,
 } from "../components/ProjectArt";
+
+// Lazy-loaded: each of these modules calls useGLTF.preload() as a side effect
+// on import, which would otherwise fetch all three .glb files (3.6MB total)
+// on initial page load regardless of scroll position or WebGL support.
+const Hubwerkseinheit = lazy(() => import("../components/Hubwerkseinheit"));
+const TischNew = lazy(() => import("../components/TischNew"));
+const Flaschenzug = lazy(() => import("../components/Flaschenzug"));
 
 export const navLinks = [
   {

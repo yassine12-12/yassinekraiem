@@ -146,7 +146,7 @@ const About = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
                     <img
-                      src="http://purecatamphetamine.github.io/country-flag-icons/3x2/FR.svg"
+                      src="https://purecatamphetamine.github.io/country-flag-icons/3x2/FR.svg"
                       className="w-5 h-4 object-cover rounded-sm"
                       alt="French"
                     />
@@ -158,7 +158,7 @@ const About = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
                     <img
-                      src="http://purecatamphetamine.github.io/country-flag-icons/3x2/TN.svg"
+                      src="https://purecatamphetamine.github.io/country-flag-icons/3x2/TN.svg"
                       className="w-5 h-4 object-cover rounded-sm"
                       alt="Arabic"
                     />
@@ -170,7 +170,7 @@ const About = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
                     <img
-                      src="http://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg"
+                      src="https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg"
                       className="w-5 h-4 object-cover rounded-sm"
                       alt="English"
                     />
@@ -182,7 +182,7 @@ const About = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
                     <img
-                      src="http://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg"
+                      src="https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg"
                       className="w-5 h-4 object-cover rounded-sm"
                       alt="German"
                     />

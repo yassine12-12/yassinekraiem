@@ -228,6 +228,9 @@ const Hero = () => {
               <img
                 src="/assets/yassine.jpg"
                 alt="Yassine Kraiem"
+                width={640}
+                height={640}
+                fetchpriority="high"
                 className="w-full h-full object-cover object-top"
               />
             </div>
