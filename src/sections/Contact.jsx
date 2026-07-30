@@ -45,7 +45,7 @@ const Contact = () => {
 
           <div className="flex space-x-4">
             <a
-              href="https://github.com/yassine12-12"
+              href="https://github.com/Yassine-Kraiem"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-all duration-300 hover:scale-110 hover:shadow-lg bg-gray-800/60 hover:bg-gray-700/80 p-3 rounded-lg border border-gray-600/40 hover:border-gray-500/60"

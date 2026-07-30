@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://yassine12-12.github.io/yassinekraiem",
+  "homepage": "https://yassine-kraiem.github.io/yassine-kraiem-portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -136,8 +136,8 @@ export const myProjects = [
     image: '/assets/projects/ai-work-instructions.png',
     desc: 'Automatically generates structured, bilingual (DE/EN) assembly work instructions (PDF) from a raw assembly video.',
     subdesc: 'Reduces manual work instruction authoring effort by up to 90% for structured assembly processes, validated on multiple assembly types.',
-    href: 'https://github.com/yassine12-12/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
-    github: 'https://github.com/yassine12-12/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
+    href: 'https://github.com/Yassine-Kraiem/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
+    github: 'https://github.com/Yassine-Kraiem/AI-Powered-System-for-Automatic-Work-Instruction-Generation',
     category: 'computer-science',
     technologies: ['Python', 'FastAPI', 'React', 'LLM', 'OpenCV', 'ReportLab', 'Pydantic'],
     features: [
@@ -169,7 +169,7 @@ export const myProjects = [
     image: '/assets/projects/cycle-time-monitoring.gif',
     desc: 'Automated assembly cycle-time measurement using YOLOv8, MediaPipe, and OpenCV to detect assembly steps. Collected data and developed a vision pipeline, including training and optimizing YOLOv8 models.',
     subdesc: 'Advanced computer vision techniques applied to industrial automation.',
-    href: 'https://github.com/yassine12-12/AI-Based-Cycle-Time-Monitoring-for-Human-Assembly-Processes-in-Human-Robot-Collaboration',
+    href: 'https://github.com/Yassine-Kraiem/AI-Based-Cycle-Time-Monitoring-for-Human-Assembly-Processes-in-Human-Robot-Collaboration',
     category: 'computer-science',
     technologies: ['Python', 'YOLOv8', 'MediaPipe', 'OpenCV', 'Computer Vision'],
     features: [
@@ -180,7 +180,7 @@ export const myProjects = [
       'Custom dataset collection and annotation pipeline'
     ],
     results: 'Successfully reduced manual time measurement workload by 80% and improved production efficiency monitoring. The system now provides real-time insights into assembly line performance.',
-    github: 'https://github.com/yassine12-12/AI-Based-Cycle-Time-Monitoring-for-Human-Assembly-Processes-in-Human-Robot-Collaboration',
+    github: 'https://github.com/Yassine-Kraiem/AI-Based-Cycle-Time-Monitoring-for-Human-Assembly-Processes-in-Human-Robot-Collaboration',
     pdfUrl: '/assets/project2.pdf',
     texture: '',
     logo: '',
@@ -228,8 +228,8 @@ export const myProjects = [
     image: '/assets/projects/vestl.gif',
     desc: 'Wall-mounted hardware product: a Raspberry Pi driving a 3:1 ultra-wide screen at the apartment entrance, showing live departures for the nearest bus/tram/U-Bahn/S-Bahn.',
     subdesc: 'Combines deliberate hardware form-factor design with a React/TypeScript kiosk display and live transit data.',
-    href: 'https://github.com/yassine12-12/vestl',
-    github: 'https://github.com/yassine12-12/vestl',
+    href: 'https://github.com/Yassine-Kraiem/vestl',
+    github: 'https://github.com/Yassine-Kraiem/vestl',
     category: 'computer-science',
     technologies: ['Raspberry Pi', 'React', 'TypeScript', 'Tailwind CSS', 'Leaflet'],
     features: [
@@ -257,8 +257,8 @@ export const myProjects = [
     imageFit: 'contain',
     desc: 'Native macOS menu-bar app (Swift/SwiftUI) that tracks Claude Max subscription capacity in real time — remaining quota, per-model usage breakdown, and plan-fit advice.',
     subdesc: 'Personal product built end-to-end in Swift, from data collection to a packaged, tested macOS app.',
-    href: 'https://github.com/yassine12-12/claudroom',
-    github: 'https://github.com/yassine12-12/claudroom',
+    href: 'https://github.com/Yassine-Kraiem/claudroom',
+    github: 'https://github.com/Yassine-Kraiem/claudroom',
     category: 'computer-science',
     technologies: ['Swift', 'SwiftUI', 'Swift Package Manager', 'macOS'],
     features: [
@@ -285,8 +285,8 @@ export const myProjects = [
     art: KubernetesArt,
     desc: 'Custom Kubernetes scheduler (Python, Kopf operator) that places workloads by real-time CO2 intensity instead of default bin-packing.',
     subdesc: 'Self-deployed the full cloud stack across three providers to evaluate the scheduler against 300+ real workloads.',
-    href: 'https://github.com/yassine12-12/Cloud-Computing-WiSe-2025-26',
-    github: 'https://github.com/yassine12-12/Cloud-Computing-WiSe-2025-26',
+    href: 'https://github.com/Yassine-Kraiem/Cloud-Computing-WiSe-2025-26',
+    github: 'https://github.com/Yassine-Kraiem/Cloud-Computing-WiSe-2025-26',
     category: 'computer-science',
     technologies: ['Python', 'Kubernetes', 'Kopf', 'OpenStack', 'AWS Lambda', 'GCP'],
     features: [
@@ -315,7 +315,7 @@ export const myProjects = [
     imageFit: 'framed',
     desc: 'Built an ML pipeline with EDA, imputation, winsorization, RobustScaler, stratified split, and SMOTEENN. Tuned Logistic Regression, SVM, and XGBoost using GridSearchCV.',
     subdesc: 'Comprehensive machine learning project focusing on healthcare applications and fairness in AI.',
-    href: 'https://github.com/yassine12-12/framingham-heart-disease-prediction',
+    href: 'https://github.com/Yassine-Kraiem/framingham-heart-disease-prediction',
     category: 'computer-science',
     technologies: ['Python', 'scikit-learn', 'XGBoost', 'GridSearchCV', 'Healthcare AI'],
     features: [
@@ -326,7 +326,7 @@ export const myProjects = [
       'Hyperparameter tuning with cross-validation and GridSearchCV'
     ],
     results: 'Achieved 89% accuracy in cardiovascular risk prediction with XGBoost model. The model demonstrated excellent performance across different demographic groups, ensuring fairness in AI healthcare applications.',
-    github: 'https://github.com/yassine12-12/framingham-heart-disease-prediction',
+    github: 'https://github.com/Yassine-Kraiem/framingham-heart-disease-prediction',
     texture: '',
     logo: '',
     logoStyle: {
@@ -347,7 +347,7 @@ export const myProjects = [
     imagePosition: 'top',
     desc: 'Cleaned and merged multi-source production data; applied ML to predict delays and find bottlenecks. Built interactive dashboards with pandas, Plotly, and Dash for analysis and reporting.',
     subdesc: 'Demonstrated expertise in data engineering and visualization for industrial applications.',
-    href: 'https://github.com/yassine12-12/Automotive-Production-Lead-Time-Analysis',
+    href: 'https://github.com/Yassine-Kraiem/Automotive-Production-Lead-Time-Analysis',
     category: 'computer-science',
     technologies: ['Python', 'pandas', 'Plotly', 'Dash', 'Machine Learning', 'Data Engineering'],
     features: [
@@ -358,7 +358,7 @@ export const myProjects = [
       'Automated reporting system for management insights'
     ],
     results: 'Identified key production bottlenecks that were causing 15% efficiency loss. Implemented solutions that improved overall equipment effectiveness (OEE) by 12%.',
-    github: 'https://github.com/yassine12-12/Automotive-Production-Lead-Time-Analysis',
+    github: 'https://github.com/Yassine-Kraiem/Automotive-Production-Lead-Time-Analysis',
     texture: '',
     logo: '',
     logoStyle: {
@@ -378,7 +378,7 @@ export const myProjects = [
     art: NeuralNetArt,
     desc: 'Built CNNs, LSTMs, and Autoencoders for classification, anomaly detection, and time series forecasting. Used batch normalization, early stopping, and ROC curves for model evaluation.',
     subdesc: 'Hands-on experience with deep learning architectures and model evaluation techniques.',
-    href: 'https://github.com/yassine12-12',
+    href: 'https://github.com/Yassine-Kraiem',
     category: 'computer-science',
     technologies: ['Python', 'TensorFlow', 'Keras', 'PyTorch', 'Deep Learning'],
     features: [
@@ -389,7 +389,7 @@ export const myProjects = [
       'Comprehensive model evaluation with ROC curves and confusion matrices'
     ],
     results: 'Successfully implemented and compared multiple deep learning architectures, achieving state-of-the-art results on academic datasets with 94% accuracy on image classification tasks.',
-    github: 'https://github.com/yassine12-12',
+    github: 'https://github.com/Yassine-Kraiem',
     texture: '',
     logo: '',
     logoStyle: {
@@ -409,7 +409,7 @@ export const myProjects = [
     art: DecisionBoundaryArt,
     desc: 'Implemented ML techniques: regression, kNN, SVM, trees, ensembles (bagging/boosting). Applied clustering (K-means, DBSCAN), encoding/normalization, validation (k-fold), and evaluation (F1, ROC/PR).',
     subdesc: 'Comprehensive exploration of machine learning algorithms and their applications in engineering contexts.',
-    href: 'https://github.com/yassine12-12',
+    href: 'https://github.com/Yassine-Kraiem',
     category: 'computer-science',
     technologies: ['Python', 'scikit-learn', 'Machine Learning'],
     texture: '',
@@ -431,8 +431,8 @@ export const myProjects = [
     image: '/assets/projects/portfolio-website.jpg',
     desc: 'Designed and developed a responsive personal website to showcase projects and skills. Implemented modern UI with React, Three.js, and Tailwind CSS.',
     subdesc: 'Modern web development project with 3D graphics and responsive design.',
-    href: 'https://github.com/yassine12-12/yassinekraiem',
-    github: 'https://github.com/yassine12-12/yassinekraiem',
+    href: 'https://github.com/Yassine-Kraiem/yassine-kraiem-portfolio',
+    github: 'https://github.com/Yassine-Kraiem/yassine-kraiem-portfolio',
     technologies: ['React', 'Three.js', 'Tailwind CSS', 'Vercel'],
     category: 'computer-science',
     texture: '',
@@ -464,8 +464,8 @@ export const myProjects = [
       'Event streaming with Apache Kafka for real-time data processing'
     ],
     results: 'Achieved 92% accuracy in predicting machine failures 24 hours in advance, reducing unexpected downtime by 60% and saving approximately €50,000 in maintenance costs annually.',
-    href: 'https://github.com/yassine12-12/Data-streaming-infrastructure-for-CNC-machine',
-    github: 'https://github.com/yassine12-12/Data-streaming-infrastructure-for-CNC-machine',
+    href: 'https://github.com/Yassine-Kraiem/Data-streaming-infrastructure-for-CNC-machine',
+    github: 'https://github.com/Yassine-Kraiem/Data-streaming-infrastructure-for-CNC-machine',
     texture: '/textures/project/project3.mp4',
     logo: '/assets/project-logo3.png',
     logoStyle: {
