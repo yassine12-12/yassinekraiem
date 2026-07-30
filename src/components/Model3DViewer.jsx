@@ -3,6 +3,7 @@ import { OrbitControls, Environment, Html } from '@react-three/drei';
 import { Suspense } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import { useWebGLSupport } from '../hooks/useWebGLSupport';
+import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
 
 const ViewerFallback = () => (
   <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-6">
@@ -28,8 +29,11 @@ const CONTROLS = [
   { label: 'Close', hint: 'Esc' },
 ];
 
-const Model3DViewer = ({ model: ModelComponent, isOpen, onClose, title }) => {
+const Model3DViewer = ({ model, isOpen, onClose, title }) => {
   const webglSupported = useWebGLSupport();
+  // Resolved via plain dynamic import() into state, not React.lazy() - see
+  // useLazyModelComponent for why.
+  const ModelComponent = useLazyModelComponent(model, isOpen && webglSupported);
 
   if (!isOpen) return null;
 

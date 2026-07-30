@@ -1,17 +1,9 @@
-﻿import { lazy } from "react";
-import {
+﻿import {
   CNCMonitoringArt,
   KubernetesArt,
   NeuralNetArt,
   DecisionBoundaryArt,
 } from "../components/ProjectArt";
-
-// Lazy-loaded: each of these modules calls useGLTF.preload() as a side effect
-// on import, which would otherwise fetch all three .glb files (3.6MB total)
-// on initial page load regardless of scroll position or WebGL support.
-const Hubwerkseinheit = lazy(() => import("../components/Hubwerkseinheit"));
-const TischNew = lazy(() => import("../components/TischNew"));
-const Flaschenzug = lazy(() => import("../components/Flaschenzug"));
 
 export const navLinks = [
   {
@@ -528,7 +520,7 @@ export const myProjects = [
     scale: 0.02,  
     
 
-    model: Hubwerkseinheit,
+    model: 'Hubwerkseinheit',
     logoStyle: {
       backgroundColor: '#13202F',
       border: '0.2px solid #17293E',
@@ -552,7 +544,7 @@ export const myProjects = [
     rotation: [Math.PI/1.8, Math.PI , 0 ],  // Reset rotation
     scale: 0.016,  // Adjusted scale
     logo: '/assets/project-logo4.png',
-    model: TischNew,
+    model: 'TischNew',
     logoStyle: {
       backgroundColor: '#FFD700',
       border: '0.2px solid #FFA500',
@@ -575,7 +567,7 @@ export const myProjects = [
     rotation: [Math.PI / 2, Math.PI , Math.PI / 2],
     scale: 0.04,
     logo: '/assets/project-logo5.png',
-    model: Flaschenzug,
+    model: 'Flaschenzug',
     logoStyle: {
       backgroundColor: '#8B5A2B',
       border: '0.2px solid #D2691E',

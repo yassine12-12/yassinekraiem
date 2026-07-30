@@ -7,6 +7,7 @@ import Model3DViewer from '../components/Model3DViewer';
 import PDFViewer from '../components/PDFViewer';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { useWebGLSupport } from '../hooks/useWebGLSupport';
+import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
 
 const Model3DFallback = () => (
   <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
@@ -20,6 +21,64 @@ const Model3DLoading = () => (
     <span className="w-6 h-6 rounded-full border-2 border-orange-400/30 border-t-orange-400 animate-spin" />
   </div>
 );
+
+const Project3DPreview = ({ project, isInView, webglSupported, onOpen }) => {
+  // Resolved via plain dynamic import() into state, not React.lazy() - see
+  // useLazyModelComponent for why. Gated on isInView (defer until scrolled
+  // to) AND webglSupported (no point fetching a model this browser can't
+  // render anyway).
+  const ModelComp = useLazyModelComponent(project.model, isInView && webglSupported);
+
+  if (!webglSupported) {
+    return (
+      <div className="h-64 w-full">
+        <Model3DFallback />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="h-64 w-full cursor-pointer relative group/model overflow-hidden"
+      onClick={onOpen}
+    >
+      <div className="absolute inset-0 bg-black/20 group-hover/model:bg-black/40 transition-all duration-300 z-10">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/model:opacity-100 transition-all duration-300">
+          <div className="bg-orange-500/90 text-white px-6 py-3 rounded-xl font-semibold">
+            View 3D Model
+          </div>
+        </div>
+      </div>
+
+      {isInView && ModelComp ? (
+        <ErrorBoundary fallback={<Model3DFallback />}>
+          <Canvas camera={{ position: [0, 0, 30], fov: 45 }}>
+            <Suspense fallback={<Model3DLoading />}>
+              <OrbitControls
+                enablePan={false}
+                enableZoom={false}
+                enableRotate={true}
+                autoRotate={true}
+                autoRotateSpeed={1}
+                target={[0, 0, 0]}
+              />
+              <ambientLight intensity={1.2} />
+              <directionalLight position={[10, 10, 5]} intensity={2} />
+              <directionalLight position={[-10, -10, -5]} intensity={1} />
+              <ModelComp
+                position={project.position || [0, 0, 0]}
+                rotation={project.rotation || [0, 0, 0]}
+                scale={project.scale || 0.02}
+              />
+            </Suspense>
+          </Canvas>
+        </ErrorBoundary>
+      ) : (
+        <Model3DLoading />
+      )}
+    </div>
+  );
+};
 
 const GithubIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -205,51 +264,12 @@ const Projects = () => {
               {/* Project Header - Only for 3D Models */}
               {project.model && (
                 <div className="relative">
-                  {webglSupported ? (
-                    <div
-                      className="h-64 w-full cursor-pointer relative group/model overflow-hidden"
-                      onClick={() => openModelViewer(project)}
-                    >
-                      <div className="absolute inset-0 bg-black/20 group-hover/model:bg-black/40 transition-all duration-300 z-10">
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/model:opacity-100 transition-all duration-300">
-                          <div className="bg-orange-500/90 text-white px-6 py-3 rounded-xl font-semibold">
-                            View 3D Model
-                          </div>
-                        </div>
-                      </div>
-
-                      {isInView ? (
-                        <ErrorBoundary fallback={<Model3DFallback />}>
-                          <Canvas camera={{ position: [0, 0, 30], fov: 45 }}>
-                            <Suspense fallback={<Model3DLoading />}>
-                              <OrbitControls
-                                enablePan={false}
-                                enableZoom={false}
-                                enableRotate={true}
-                                autoRotate={true}
-                                autoRotateSpeed={1}
-                                target={[0, 0, 0]}
-                              />
-                              <ambientLight intensity={1.2} />
-                              <directionalLight position={[10, 10, 5]} intensity={2} />
-                              <directionalLight position={[-10, -10, -5]} intensity={1} />
-                              <project.model
-                                position={project.position || [0, 0, 0]}
-                                rotation={project.rotation || [0, 0, 0]}
-                                scale={project.scale || 0.02}
-                              />
-                            </Suspense>
-                          </Canvas>
-                        </ErrorBoundary>
-                      ) : (
-                        <Model3DLoading />
-                      )}
-                    </div>
-                  ) : (
-                    <div className="h-64 w-full">
-                      <Model3DFallback />
-                    </div>
-                  )}
+                  <Project3DPreview
+                    project={project}
+                    isInView={isInView}
+                    webglSupported={webglSupported}
+                    onOpen={() => openModelViewer(project)}
+                  />
 
                   {/* Category Badge for Mechanical Projects */}
                   <div className="absolute top-4 left-4">
