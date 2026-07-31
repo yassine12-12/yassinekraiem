@@ -6,21 +6,36 @@ import { useState } from 'react';
 // browser's small pool of simultaneous WebGL contexts.
 let cachedSupport = null;
 
+// A single context-creation attempt can fail transiently (GPU process not
+// yet spun up right at page load, a momentary context-limit hiccup, an
+// extension briefly holding the GPU) even though the browser genuinely
+// supports WebGL - and because the result above is cached for the entire
+// page session, one bad first attempt used to permanently break every 3D
+// preview and the full-screen viewer until a reload. Try a few times, and
+// probe webgl2 first since that's what three.js's WebGLRenderer actually
+// requests by default - a mismatched probe could pass while the real
+// canvas fails, or fail while it would have succeeded.
+const probeOnce = () => {
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  const ok = !!gl;
+  gl?.getExtension('WEBGL_lose_context')?.loseContext();
+  return ok;
+};
+
 const detectWebGLSupport = () => {
   if (cachedSupport !== null) return cachedSupport;
 
+  let ok = false;
   try {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    cachedSupport = !!gl;
-    // Release the probe context immediately instead of leaving it to be
-    // garbage collected - otherwise it can keep counting against the
-    // context limit for a while and starve the real canvases.
-    gl?.getExtension('WEBGL_lose_context')?.loseContext();
+    for (let attempt = 0; attempt < 3 && !ok; attempt++) {
+      ok = probeOnce();
+    }
   } catch {
-    cachedSupport = false;
+    ok = false;
   }
 
+  cachedSupport = ok;
   return cachedSupport;
 };
 
