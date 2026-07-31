@@ -8,6 +8,7 @@ import PDFViewer from '../components/PDFViewer';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { useWebGLSupport } from '../hooks/useWebGLSupport';
 import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
+import { useWebGLContextRecovery } from '../hooks/useWebGLContextRecovery';
 
 const Model3DFallback = () => (
   <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
@@ -22,12 +23,38 @@ const Model3DLoading = () => (
   </div>
 );
 
-const Project3DPreview = ({ project, isInView, webglSupported, onOpen }) => {
+const Model3DError = ({ onRetry }) => (
+  <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
+    <p className="text-orange-300 text-sm font-medium">Couldn&apos;t load the 3D preview</p>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onRetry();
+      }}
+      className="mt-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-orange-500/20 text-orange-300 border border-orange-400/30 hover:bg-orange-500/30 transition-colors duration-300"
+    >
+      Retry
+    </button>
+  </div>
+);
+
+const Project3DPreview = ({ project, webglSupported, onOpen }) => {
+  const cardRef = useRef(null);
+  // Own per-card visibility (not once-only) rather than the whole section
+  // being in view - so a preview scrolled far off-screen unmounts its
+  // <Canvas> and releases its WebGL context back to the browser's shared
+  // pool, instead of every mechanical project holding a live context
+  // simultaneously for the rest of the page's life.
+  const cardInView = useInView(cardRef, { margin: '200px' });
   // Resolved via plain dynamic import() into state, not React.lazy() - see
-  // useLazyModelComponent for why. Gated on isInView (defer until scrolled
-  // to) AND webglSupported (no point fetching a model this browser can't
-  // render anyway).
-  const ModelComp = useLazyModelComponent(project.model, isInView && webglSupported);
+  // useLazyModelComponent for why. Gated on cardInView (defer until
+  // scrolled near) AND webglSupported (no point fetching a model this
+  // browser can't render anyway).
+  const { Component: ModelComp, error: loadError, retry: retryLoad } = useLazyModelComponent(
+    project.model,
+    cardInView && webglSupported
+  );
+  const { canvasKey, lost: contextLost, handleCreated, retry: retryContext } = useWebGLContextRecovery();
 
   if (!webglSupported) {
     return (
@@ -39,6 +66,7 @@ const Project3DPreview = ({ project, isInView, webglSupported, onOpen }) => {
 
   return (
     <div
+      ref={cardRef}
       className="h-64 w-full cursor-pointer relative group/model overflow-hidden"
       onClick={onOpen}
     >
@@ -50,9 +78,13 @@ const Project3DPreview = ({ project, isInView, webglSupported, onOpen }) => {
         </div>
       </div>
 
-      {isInView && ModelComp ? (
+      {loadError ? (
+        <Model3DError onRetry={retryLoad} />
+      ) : contextLost ? (
+        <Model3DError onRetry={retryContext} />
+      ) : cardInView && ModelComp ? (
         <ErrorBoundary fallback={<Model3DFallback />}>
-          <Canvas camera={{ position: [0, 0, 30], fov: 45 }}>
+          <Canvas key={canvasKey} onCreated={handleCreated} camera={{ position: [0, 0, 30], fov: 45 }}>
             <Suspense fallback={<Model3DLoading />}>
               <OrbitControls
                 enablePan={false}
@@ -266,7 +298,6 @@ const Projects = () => {
                 <div className="relative">
                   <Project3DPreview
                     project={project}
-                    isInView={isInView}
                     webglSupported={webglSupported}
                     onOpen={() => openModelViewer(project)}
                   />
