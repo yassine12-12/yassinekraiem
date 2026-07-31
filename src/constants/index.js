@@ -50,7 +50,7 @@ export const workExperiences = [
         bullets: [
           'Built a unified evaluation platform comparing native function calling, REST, and MCP integrations across local and frontier LLMs',
           'Designed ReAct-based agent orchestration and a from-scratch RAG pipeline (TF-IDF, dense retrieval, cross-encoder reranking)',
-          'Built a proof-of-concept engineering assistant on self-hosted models and presented results to domain experts',
+          'Built a proof-of-concept engineering assistant on self-hosted models',
         ],
       },
       {
