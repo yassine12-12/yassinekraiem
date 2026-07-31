@@ -51,7 +51,9 @@ const Model3DViewer = ({ model, isOpen, onClose, title }) => {
     model,
     isOpen && webglSupported
   );
-  const { canvasKey, lost: contextLost, handleCreated, retry: retryContext } = useWebGLContextRecovery();
+  const { canvasKey, lost: contextLost, handleCreated, retry: retryContext } = useWebGLContextRecovery(
+    `viewer:${model}`
+  );
 
   if (!isOpen) return null;
 

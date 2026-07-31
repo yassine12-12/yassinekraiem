@@ -54,7 +54,9 @@ const Project3DPreview = ({ project, webglSupported, onOpen }) => {
     project.model,
     cardInView && webglSupported
   );
-  const { canvasKey, lost: contextLost, handleCreated, retry: retryContext } = useWebGLContextRecovery();
+  const { canvasKey, lost: contextLost, handleCreated, retry: retryContext } = useWebGLContextRecovery(
+    `preview:${project.model}`
+  );
 
   if (!webglSupported) {
     return (

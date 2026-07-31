@@ -29,6 +29,7 @@ export const useLazyModelComponent = (modelKey, shouldLoad) => {
         // A rejected dynamic import (network blip, or a stale chunk hash
         // after a redeploy) must not leave the viewer stuck on an infinite
         // loading spinner with no way out.
+        console.warn(`[3D] Failed to load model component "${modelKey}"`, err);
         if (!cancelled) setError(err);
       });
     return () => {

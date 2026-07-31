@@ -8,7 +8,7 @@ import { useCallback, useState } from 'react';
 // back short of a full page reload. `retry` forces a fresh <canvas> element
 // (via a key bump) since a truly lost WebGL context cannot be reopened on
 // the same canvas.
-export const useWebGLContextRecovery = () => {
+export const useWebGLContextRecovery = (label) => {
   const [canvasKey, setCanvasKey] = useState(0);
   const [lost, setLost] = useState(false);
 
@@ -16,10 +16,11 @@ export const useWebGLContextRecovery = () => {
     const canvas = state.gl.domElement;
     const onLost = (event) => {
       event.preventDefault();
+      console.warn(`[3D] WebGL context lost${label ? ` (${label})` : ''}`, event);
       setLost(true);
     };
     canvas.addEventListener('webglcontextlost', onLost, { once: true });
-  }, []);
+  }, [label]);
 
   const retry = useCallback(() => {
     setLost(false);
