@@ -13,19 +13,37 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 // (remounting into a crash-looping GPU would just feed the loop).
 const AUTO_RETRY_DELAYS_MS = [2000, 6000];
 
+// A context that stays alive this long "earns back" its auto-retries.
+// Without this, two losses over a whole session - however far apart -
+// would permanently downgrade a card to the manual-retry UI, even though
+// spaced-out losses are exactly the transient kind worth self-healing.
+const RESET_ATTEMPTS_AFTER_MS = 30000;
+
 export const useWebGLContextRecovery = (label) => {
   const [canvasKey, setCanvasKey] = useState(0);
   const [lost, setLost] = useState(false);
   const autoAttempts = useRef(0);
   const timer = useRef(null);
+  const resetTimer = useRef(null);
 
-  useEffect(() => () => clearTimeout(timer.current), []);
+  useEffect(
+    () => () => {
+      clearTimeout(timer.current);
+      clearTimeout(resetTimer.current);
+    },
+    []
+  );
 
   const handleCreated = useCallback(
     (state) => {
       const canvas = state.gl.domElement;
+      clearTimeout(resetTimer.current);
+      resetTimer.current = setTimeout(() => {
+        autoAttempts.current = 0;
+      }, RESET_ATTEMPTS_AFTER_MS);
       const onLost = (event) => {
         event.preventDefault();
+        clearTimeout(resetTimer.current);
         const attempt = autoAttempts.current;
         if (attempt < AUTO_RETRY_DELAYS_MS.length) {
           autoAttempts.current = attempt + 1;

@@ -6,24 +6,38 @@ import { useWebGLSupport, recheckWebGLSupport } from '../hooks/useWebGLSupport';
 import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
 import { useWebGLContextRecovery } from '../hooks/useWebGLContextRecovery';
 
-const ViewerFallback = () => (
-  <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-6">
-    <p className="text-white font-medium">3D viewing isn&apos;t supported in this browser</p>
+const ViewerPoster = ({ model }) =>
+  model ? (
+    <img
+      src={`/models/posters/${model}.jpg`}
+      alt=""
+      aria-hidden="true"
+      className="max-h-[45%] max-w-[80%] rounded-lg border border-white/10 object-contain"
+      onError={(e) => {
+        e.currentTarget.style.display = 'none';
+      }}
+    />
+  ) : null;
+
+const ViewerFallback = ({ model }) => (
+  <div className="w-full h-full flex flex-col items-center justify-center gap-4 text-center px-6">
+    <ViewerPoster model={model} />
+    <p className="text-white font-medium">Showing a static preview</p>
     <p className="text-gray-400 text-sm max-w-sm">
-      Your browser or device doesn&apos;t support WebGL, which this 3D viewer needs. Try a different
-      browser or device.
+      Interactive 3D needs WebGL, which isn&apos;t available in this browser right now.
     </p>
     <button
       onClick={recheckWebGLSupport}
-      className="mt-1 px-4 py-2 rounded-lg text-sm font-medium bg-orange-500/15 text-orange-300 border border-orange-400/30 hover:bg-orange-500/25 transition-colors duration-300"
+      className="px-4 py-2 rounded-lg text-sm font-medium bg-orange-500/15 text-orange-300 border border-orange-400/30 hover:bg-orange-500/25 transition-colors duration-300"
     >
       Check again
     </button>
   </div>
 );
 
-const ViewerError = ({ onRetry }) => (
+const ViewerError = ({ onRetry, model }) => (
   <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-6">
+    <ViewerPoster model={model} />
     <p className="text-white font-medium">Couldn&apos;t load the 3D model</p>
     <p className="text-gray-400 text-sm max-w-sm">This can happen on a flaky connection. Give it another try.</p>
     <button
@@ -103,13 +117,13 @@ const Model3DViewer = ({ model, isOpen, onClose, title }) => {
           />
 
           {!webglSupported ? (
-            <ViewerFallback />
+            <ViewerFallback model={model} />
           ) : loadError ? (
-            <ViewerError onRetry={retryLoad} />
+            <ViewerError onRetry={retryLoad} model={model} />
           ) : contextLost ? (
-            <ViewerError onRetry={retryContext} />
+            <ViewerError onRetry={retryContext} model={model} />
           ) : (
-            <ErrorBoundary fallback={<ViewerFallback />}>
+            <ErrorBoundary fallback={<ViewerFallback model={model} />}>
               <Canvas
                 key={canvasKey}
                 onCreated={handleCreated}

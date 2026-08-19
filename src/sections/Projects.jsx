@@ -10,19 +10,38 @@ import { useWebGLSupport, recheckWebGLSupport } from '../hooks/useWebGLSupport';
 import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
 import { useWebGLContextRecovery } from '../hooks/useWebGLContextRecovery';
 
-const Model3DFallback = () => (
-  <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
-    <p className="text-orange-300 text-sm font-medium">3D preview unavailable in this browser</p>
-    <p className="text-gray-400 text-xs">See the project details and documentation below</p>
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        recheckWebGLSupport();
+// Pre-rendered still of the model, shown whenever the live canvas can't
+// be (WebGL unavailable or crashed) - visitors on locked-down or GPU-less
+// machines still see the actual work instead of an apology card.
+const PosterBackdrop = ({ model }) =>
+  model ? (
+    <img
+      src={`/models/posters/${model}.jpg`}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className="absolute inset-0 h-full w-full object-cover"
+      onError={(e) => {
+        e.currentTarget.style.display = 'none';
       }}
-      className="mt-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-orange-500/20 text-orange-300 border border-orange-400/30 hover:bg-orange-500/30 transition-colors duration-300"
-    >
-      Check again
-    </button>
+    />
+  ) : null;
+
+const Model3DFallback = ({ model }) => (
+  <div className="relative h-full w-full overflow-hidden bg-gradient-to-br from-orange-500/10 to-red-500/10">
+    <PosterBackdrop model={model} />
+    <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 bg-gradient-to-t from-black/80 via-black/50 to-transparent px-4 pb-2.5 pt-8">
+      <p className="text-orange-200/90 text-xs">Static preview - interactive 3D unavailable</p>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          recheckWebGLSupport();
+        }}
+        className="px-3 py-1 rounded-lg text-xs font-medium bg-orange-500/20 text-orange-300 border border-orange-400/30 hover:bg-orange-500/30 transition-colors duration-300"
+      >
+        Check again
+      </button>
+    </div>
   </div>
 );
 
@@ -32,15 +51,16 @@ const Model3DLoading = () => (
   </div>
 );
 
-const Model3DError = ({ onRetry }) => (
-  <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
-    <p className="text-orange-300 text-sm font-medium">Couldn&apos;t load the 3D preview</p>
+const Model3DError = ({ onRetry, model }) => (
+  <div className="relative h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
+    <PosterBackdrop model={model} />
+    <p className="relative text-orange-300 text-sm font-medium [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]">Couldn&apos;t load the 3D preview</p>
     <button
       onClick={(e) => {
         e.stopPropagation();
         onRetry();
       }}
-      className="mt-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-orange-500/20 text-orange-300 border border-orange-400/30 hover:bg-orange-500/30 transition-colors duration-300"
+      className="relative mt-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-orange-500/20 text-orange-300 border border-orange-400/30 hover:bg-orange-500/30 transition-colors duration-300"
     >
       Retry
     </button>
@@ -70,7 +90,7 @@ const Project3DPreview = ({ project, webglSupported, onOpen }) => {
   if (!webglSupported) {
     return (
       <div className="h-64 w-full">
-        <Model3DFallback />
+        <Model3DFallback model={project.model} />
       </div>
     );
   }
@@ -96,11 +116,11 @@ const Project3DPreview = ({ project, webglSupported, onOpen }) => {
       )}
 
       {loadError ? (
-        <Model3DError onRetry={retryLoad} />
+        <Model3DError onRetry={retryLoad} model={project.model} />
       ) : contextLost ? (
-        <Model3DError onRetry={retryContext} />
+        <Model3DError onRetry={retryContext} model={project.model} />
       ) : cardInView && ModelComp ? (
-        <ErrorBoundary fallback={<Model3DFallback />}>
+        <ErrorBoundary fallback={<Model3DFallback model={project.model} />}>
           <Canvas
             key={canvasKey}
             onCreated={handleCreated}

@@ -14,6 +14,10 @@ import { useEffect, useState } from 'react';
 // in the instant the page loaded. Instead, a failed probe schedules
 // re-probes on a backoff, and every subscribed component flips to
 // supported the moment one succeeds.
+// Debug/preview override: load any page with ?no3d to see the no-WebGL
+// fallbacks in a healthy browser.
+const FORCE_OFF = typeof window !== 'undefined' && /[?&]no3d\b/.test(window.location.search);
+
 let confirmedSupported = false;
 let probing = false;
 const subscribers = new Set();
@@ -45,7 +49,7 @@ const notifySupported = () => {
 };
 
 const runProbeSequence = () => {
-  if (confirmedSupported || probing) return;
+  if (FORCE_OFF || confirmedSupported || probing) return;
   probing = true;
 
   const attempt = (idx) => {
@@ -89,5 +93,5 @@ export const useWebGLSupport = () => {
     return () => subscribers.delete(setSupported);
   }, []);
 
-  return supported;
+  return FORCE_OFF ? false : supported;
 };
