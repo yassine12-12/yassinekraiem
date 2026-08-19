@@ -81,13 +81,19 @@ const Project3DPreview = ({ project, webglSupported, onOpen }) => {
       className="h-64 w-full cursor-pointer relative group/model overflow-hidden"
       onClick={onOpen}
     >
-      <div className="absolute inset-0 bg-black/20 group-hover/model:bg-black/40 transition-all duration-300 z-10">
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/model:opacity-100 transition-all duration-300">
-          <div className="bg-orange-500/90 text-white px-6 py-3 rounded-xl font-semibold">
-            View 3D Model
+      {/* Hover overlay only while the canvas itself is showing - rendered
+          over the error/fallback states it sat above them in the stacking
+          order and swallowed every click meant for their retry buttons,
+          opening the full-screen viewer instead. */}
+      {!loadError && !contextLost && (
+        <div className="absolute inset-0 bg-black/20 group-hover/model:bg-black/40 transition-all duration-300 z-10">
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/model:opacity-100 transition-all duration-300">
+            <div className="bg-orange-500/90 text-white px-6 py-3 rounded-xl font-semibold">
+              View 3D Model
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {loadError ? (
         <Model3DError onRetry={retryLoad} />
@@ -95,7 +101,12 @@ const Project3DPreview = ({ project, webglSupported, onOpen }) => {
         <Model3DError onRetry={retryContext} />
       ) : cardInView && ModelComp ? (
         <ErrorBoundary fallback={<Model3DFallback />}>
-          <Canvas key={canvasKey} onCreated={handleCreated} camera={{ position: [0, 0, 30], fov: 45 }}>
+          <Canvas
+            key={canvasKey}
+            onCreated={handleCreated}
+            dpr={[1, 1.5]}
+            camera={{ position: [0, 0, 30], fov: 45 }}
+          >
             <Suspense fallback={<Model3DLoading />}>
               <OrbitControls
                 enablePan={false}

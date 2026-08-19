@@ -1,28 +1,50 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-// WebGL contexts can be silently force-lost by the browser at any time after
-// creation - most commonly when too many live contexts compete for the
-// platform's limited pool (this page can have several 3D previews mounted
-// at once). react-three-fiber does not surface or recover from this on its
-// own, so without this the canvas just goes blank with no error and no way
-// back short of a full page reload. `retry` forces a fresh <canvas> element
-// (via a key bump) since a truly lost WebGL context cannot be reopened on
-// the same canvas.
+// The browser can revoke a live WebGL context at any time (GPU process
+// crash or restart, driver reset, too many simultaneous contexts). The
+// canvas goes permanently blank when that happens and nothing brings it
+// back short of replacing the <canvas> element, so recovery works by
+// bumping `canvasKey` to force a fresh one.
+//
+// A lost context is usually transient - the GPU process restarts within a
+// couple of seconds - so the first two losses remount automatically on a
+// short backoff instead of surfacing an error. Only when the context
+// keeps dying does `lost` flip true and the manual-retry UI take over
+// (remounting into a crash-looping GPU would just feed the loop).
+const AUTO_RETRY_DELAYS_MS = [2000, 6000];
+
 export const useWebGLContextRecovery = (label) => {
   const [canvasKey, setCanvasKey] = useState(0);
   const [lost, setLost] = useState(false);
+  const autoAttempts = useRef(0);
+  const timer = useRef(null);
 
-  const handleCreated = useCallback((state) => {
-    const canvas = state.gl.domElement;
-    const onLost = (event) => {
-      event.preventDefault();
-      console.warn(`[3D] WebGL context lost${label ? ` (${label})` : ''}`, event);
-      setLost(true);
-    };
-    canvas.addEventListener('webglcontextlost', onLost, { once: true });
-  }, [label]);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const handleCreated = useCallback(
+    (state) => {
+      const canvas = state.gl.domElement;
+      const onLost = (event) => {
+        event.preventDefault();
+        const attempt = autoAttempts.current;
+        if (attempt < AUTO_RETRY_DELAYS_MS.length) {
+          autoAttempts.current = attempt + 1;
+          console.warn(
+            `[3D] WebGL context lost${label ? ` (${label})` : ''} - auto-remounting in ${AUTO_RETRY_DELAYS_MS[attempt]}ms`
+          );
+          timer.current = setTimeout(() => setCanvasKey((k) => k + 1), AUTO_RETRY_DELAYS_MS[attempt]);
+        } else {
+          console.warn(`[3D] WebGL context lost${label ? ` (${label})` : ''} - giving up after auto-remounts`);
+          setLost(true);
+        }
+      };
+      canvas.addEventListener('webglcontextlost', onLost, { once: true });
+    },
+    [label]
+  );
 
   const retry = useCallback(() => {
+    autoAttempts.current = 0;
     setLost(false);
     setCanvasKey((k) => k + 1);
   }, []);

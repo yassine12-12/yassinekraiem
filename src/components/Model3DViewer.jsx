@@ -113,6 +113,7 @@ const Model3DViewer = ({ model, isOpen, onClose, title }) => {
               <Canvas
                 key={canvasKey}
                 onCreated={handleCreated}
+                dpr={[1, 2]}
                 camera={{
                   position: [20, 20, 20],
                   fov: 45
