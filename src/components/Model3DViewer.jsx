@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Html } from '@react-three/drei';
 import { Suspense } from 'react';
 import ErrorBoundary from './ErrorBoundary';
-import { useWebGLSupport } from '../hooks/useWebGLSupport';
+import { useWebGLSupport, recheckWebGLSupport } from '../hooks/useWebGLSupport';
 import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
 import { useWebGLContextRecovery } from '../hooks/useWebGLContextRecovery';
 
@@ -13,6 +13,12 @@ const ViewerFallback = () => (
       Your browser or device doesn&apos;t support WebGL, which this 3D viewer needs. Try a different
       browser or device.
     </p>
+    <button
+      onClick={recheckWebGLSupport}
+      className="mt-1 px-4 py-2 rounded-lg text-sm font-medium bg-orange-500/15 text-orange-300 border border-orange-400/30 hover:bg-orange-500/25 transition-colors duration-300"
+    >
+      Check again
+    </button>
   </div>
 );
 

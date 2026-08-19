@@ -6,7 +6,7 @@ import { motion, useInView } from 'framer-motion';
 import Model3DViewer from '../components/Model3DViewer';
 import PDFViewer from '../components/PDFViewer';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { useWebGLSupport } from '../hooks/useWebGLSupport';
+import { useWebGLSupport, recheckWebGLSupport } from '../hooks/useWebGLSupport';
 import { useLazyModelComponent } from '../hooks/useLazyModelComponent';
 import { useWebGLContextRecovery } from '../hooks/useWebGLContextRecovery';
 
@@ -14,6 +14,15 @@ const Model3DFallback = () => (
   <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-orange-500/10 to-red-500/10 text-center px-6">
     <p className="text-orange-300 text-sm font-medium">3D preview unavailable in this browser</p>
     <p className="text-gray-400 text-xs">See the project details and documentation below</p>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        recheckWebGLSupport();
+      }}
+      className="mt-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-orange-500/20 text-orange-300 border border-orange-400/30 hover:bg-orange-500/30 transition-colors duration-300"
+    >
+      Check again
+    </button>
   </div>
 );
 
